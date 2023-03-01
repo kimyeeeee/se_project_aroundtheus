@@ -15,7 +15,7 @@
   margin: 0;
 }
 
-.cards__card {
+.cards__list-item {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -23,13 +23,13 @@
   overflow: hidden;
 }
 
-.cards__card_image {
+.card__image {
   width: 282px;
   max-height: 282px;
   flex: 0 0 282px;
 }
 
-.cards__card_description {
+.card__description {
   display: flex;
   background-color: white;
   color: black;
@@ -41,7 +41,7 @@
   justify-content: space-between;
 }
 
-.cards__card_title {
+.card__title {
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -53,7 +53,7 @@
   overflow: hidden;
 }
 
-.cards__card_button {
+.card__button {
   background: transparent url(../images/heart\ icon.svg) center no-repeat;
   height: 18px;
   width: 21px;
@@ -61,6 +61,6 @@
   border-radius: 0 0 10px;
 }
 
-.cards__card_button:hover {
+.card__button:hover {
   opacity: 0.5;
 }
