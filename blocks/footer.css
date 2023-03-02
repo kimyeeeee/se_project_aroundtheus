@@ -1,5 +1,4 @@
 .footer {
-  height: 18px;
   max-width: 880px;
   padding-top: 67px;
   padding-bottom: 60px;
@@ -15,18 +14,13 @@
 
 @media screen and (max-width: 544px) {
   .footer {
-    height: 18px;
-    max-width: 544px;
+    max-width: 282px;
     padding-top: 48px;
     padding-bottom: 36px;
     margin: 0;
   }
   .footer__copyright {
-    font-family: "inter", sans-serif;
-    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    color: #545454;
-    margin: 0;
   }
 }
