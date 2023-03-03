@@ -21,6 +21,10 @@
   border: 1px solid white;
 }
 
+.profile__pencil-button:hover {
+  opacity: 0.6;
+}
+
 .profile__add-button {
   background: transparent url(../images/plus\ sign.svg) center no-repeat;
   width: 150px;
@@ -31,6 +35,7 @@
 }
 .profile__add-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .profile__title {
@@ -41,6 +46,8 @@
   grid-area: title;
   margin: 0;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__description {
@@ -52,6 +59,8 @@
   margin: 0;
   box-sizing: border-box;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__pic {
   height: 120px;
@@ -70,7 +79,7 @@
   }
   .profile__pic {
     display: flex;
-    margin: 38.25px auto 26.25px;
+    margin: 38.25px auto 0;
   }
   .profile__info {
     grid-template-areas:
@@ -81,6 +90,7 @@
     box-sizing: border-box;
     grid-template-columns: minmax(auto, 196px) auto;
     place-items: center;
+    padding-top: 26.25px;
   }
   .profile__title {
     grid-area: title;
@@ -96,7 +106,6 @@
   }
   .profile__description {
     grid-area: description;
-    padding-bottom: 36px;
     font-size: 14px;
   }
   .profile__add-button {
@@ -105,5 +114,6 @@
     align-items: center;
     margin: 0;
     width: 282px;
+    margin-top: 36px;
   }
 }

@@ -1,21 +1,14 @@
-# Project 3: Around The U.S.
+# Welcome to Kim's Sprint 3: Around the U.S.!
 
-### Overview  
+This project was designed so that pictures around the U.S. could be added or removed to Jacques' profile and his pictures could be liked.
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+For this project, I had **2 main goals** coding-wise. First, I learned how to use _Figma_ and replicated this figma desgin (https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=7505%3A2&t=MZEXeVd4sPK5XFhg-0) without a brief of anykind. Second, I learned how to make the page responsive with media queries and different screen sizes without the layout breaking.
+
+Additional items I learned and implemented included grid templates, importing and applying fonts, and buttons.
+
+Some <u>cool</u> features about this are that when you hover over either a heart or the "+" button, the mouse changes like this:
+![heart screenshot](./images/heart-screenshot.png) and ![add screenshot](./images/add-screenshot.png).
+
+To see my previous projects or see how I'm doing on future projects, visit my github at: https://github.com/kimyeeeee.
+
+Thanks for reading!
