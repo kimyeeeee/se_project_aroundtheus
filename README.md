@@ -10,5 +10,6 @@ Some <u>cool</u> features about this are that when you hover over either a heart
 ![heart screenshot](./images/heart-screenshot.png) and ![add screenshot](./images/add-screenshot.png).
 
 To see my previous projects or see how I'm doing on future projects, visit my github at: https://github.com/kimyeeeee.
+To see the most updated version of this project, click on this link: https://kimyeeeee.github.io/se_project_aroundtheus/.
 
 Thanks for reading!
