@@ -19,6 +19,7 @@
   height: 24px;
   grid-area: button;
   border: 1px solid white;
+  cursor: pointer;
 }
 
 .profile__pencil-button:hover {
@@ -99,12 +100,12 @@
     display: block;
     text-align: center;
     line-height: 26.63px;
+    max-width: 100%;
   }
   .profile__pencil-button {
     grid-area: button;
     height: 18px;
     width: 18px;
-    cursor: pointer;
   }
   .profile__description {
     grid-area: description;
