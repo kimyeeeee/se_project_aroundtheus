@@ -34,7 +34,11 @@
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button class="profile__add-button" type="button"></button>
+          <button
+            class="profile__add-button"
+            id="add-button"
+            type="button"
+          ></button>
         </section>
 
         <section class="cards page__section">
@@ -69,7 +73,7 @@
       </div>
     </section>
     <!-- add card modal -->
-    <section class="modal" id="add-card-modal">
+    <section class="modal" id="add-card-popup">
       <div class="modal__container">
         <button class="modal__close-button" id="modal-close-button"></button>
         <h2 class="modal__heading">New Place</h2>
@@ -82,9 +86,10 @@
           />
           <input
             type="text"
-            class="modal__image-url"
-            placeholder="Image URL"
-            id="modal-image-url"
+            class="modal__description"
+            placeholder="Image Link"
+            id="modal-image-link"
+            name="link"
           />
           <button class="modal__save-button">Create</button>
         </form>
@@ -93,9 +98,10 @@
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" id="card-image" />
+        <button class="card__delete-button" type="button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button class="card__button" type="button"></button>
+          <button class="card__like-button" type="button"></button>
         </div>
       </li>
     </template>
