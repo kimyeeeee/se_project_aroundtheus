@@ -50,51 +50,63 @@
       </footer>
     </div>
 
-    <!-- edit modal -->
-    <section class="modal" id="profile-edit-modal">
-      <div class="modal__container">
-        <button class="modal__close-button" id="modal-close-button"></button>
-        <h2 class="modal__heading">Edit Profile</h2>
-        <form class="modal__form" id="edit-profile-form">
+    <!-- edit profile popup -->
+    <section class="popup" id="profile-edit-popup">
+      <div class="popup__container">
+        <button class="popup__close-button" id="popup-close-button"></button>
+        <h2 class="popup__heading">Edit Profile</h2>
+        <form class="popup__form" id="edit-profile-form">
           <input
             type="text"
-            class="modal__title"
+            class="popup__title"
             placeholder="Jacques Cousteau"
-            id="modal-name"
+            id="popup-name"
           />
           <input
             type="text"
-            class="modal__description"
+            class="popup__description"
             placeholder="Explorer"
-            id="modal-description"
+            id="popup-description"
           />
-          <button class="modal__save-button">Save</button>
+          <button class="popup__save-button">Save</button>
         </form>
       </div>
     </section>
-    <!-- add card modal -->
-    <section class="modal" id="add-card-popup">
-      <div class="modal__container">
-        <button class="modal__close-button" id="modal-close-button"></button>
-        <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form" id="add-card-form">
+    <!-- add card popup -->
+    <section class="popup" id="add-card-popup">
+      <div class="popup__container">
+        <button class="popup__close-button" id="popup-close-button"></button>
+        <h2 class="popup__heading">New Place</h2>
+        <form class="popup__form" id="add-card-form">
           <input
             type="text"
-            class="modal__title modal__input_type_title"
+            class="popup__title popup__input_type_title"
             placeholder="Title"
-            id="modal-name"
+            id="popup-name"
+            name="title"
           />
           <input
             type="text"
-            class="modal__description modal__input_type_url"
+            class="popup__description popup__input_type_url"
             placeholder="Image Link"
-            id="modal-image-link"
+            id="popup-image-link"
             name="link"
           />
-          <button class="modal__save-button">Create</button>
+          <button class="popup__save-button">Create</button>
         </form>
       </div>
     </section>
+
+    <!-- view image popup -->
+    <section class="popup" id="view-image-popup">
+      <div class="popup__container popup__container_type_preview">
+        <button class="popup__close-button" id="popup-close-button"></button>
+        <img src="" alt="" class="popup__image-view" id="popup-image-view" />
+        <p class="popup__image-caption"></p>
+      </div>
+    </section>
+
+    <!-- card template-->
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" id="card-image" />

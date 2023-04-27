@@ -1,0 +1,21 @@
+.popup__container_type_preview {
+  padding: 0;
+  max-height: 75vh;
+  max-width: 75vw;
+  display: flex;
+  width: auto;
+  height: auto;
+  background: none;
+}
+.popup__image-view {
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.popup__image-caption {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  color: white;
+  margin: 0;
+}
