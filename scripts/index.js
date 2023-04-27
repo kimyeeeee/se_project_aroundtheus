@@ -39,19 +39,19 @@ const viewCardImagePopup = document.querySelector("#view-image-popup");
 // Buttons and other DOM nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileCloseButton = profileEditPopup.querySelector(
-  "#popup-close-button"
+  "#editprofile-close-button"
 );
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const cardListEl = document.querySelector(".cards__list");
 const addCardButton = document.querySelector("#add-button");
-const addCardCloseButton = addCardPopup.querySelector("#popup-close-button");
+const addCardCloseButton = addCardPopup.querySelector("#addcard-close-button");
 const addCardTitle = document.querySelector(".popup__title");
 const addCardImageLink = document.querySelector(".popup__image-link");
 const viewCardImage = viewCardImagePopup.querySelector(".popup__image-view");
 const viewCardImageCaption = document.querySelector(".popup__image-caption");
 const viewCardCloseButton = viewCardImagePopup.querySelector(
-  "#popup-close-button"
+  "#viewimage-close-button"
 );
 
 // Form Data

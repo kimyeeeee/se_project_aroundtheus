@@ -10,7 +10,6 @@
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
-  display: flex;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 0.6s, opacity 0.6s linear;
@@ -27,7 +26,6 @@
   padding: 36px;
   border-radius: 10px;
   position: relative;
-  margin: 100%;
   width: 430px;
   max-width: 100%;
 }
@@ -76,7 +74,6 @@
   border: none;
   margin-top: 54px;
   padding-bottom: 13px;
-  border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -89,7 +86,6 @@
   margin-top: 43px;
   margin-bottom: 48px;
   padding-bottom: 13px;
-  border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 

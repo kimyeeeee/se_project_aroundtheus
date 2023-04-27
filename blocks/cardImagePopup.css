@@ -15,7 +15,8 @@
 .popup__image-caption {
   position: absolute;
   left: 0;
-  bottom: calc(100% + 10px);
+  top: calc(100% + 10px);
   color: white;
   margin: 0;
+  font-family: "Inter", Arial, sans-serif;
 }

@@ -40,7 +40,6 @@
             type="button"
           ></button>
         </section>
-
         <section class="cards page__section">
           <ul class="cards__list"></ul>
         </section>
@@ -49,11 +48,13 @@
         <p class="footer__copyright">&copy; 2023 Around The U.S.</p>
       </footer>
     </div>
-
     <!-- edit profile popup -->
     <section class="popup" id="profile-edit-popup">
       <div class="popup__container">
-        <button class="popup__close-button" id="popup-close-button"></button>
+        <button
+          class="popup__close-button"
+          id="editprofile-close-button"
+        ></button>
         <h2 class="popup__heading">Edit Profile</h2>
         <form class="popup__form" id="edit-profile-form">
           <input
@@ -75,14 +76,14 @@
     <!-- add card popup -->
     <section class="popup" id="add-card-popup">
       <div class="popup__container">
-        <button class="popup__close-button" id="popup-close-button"></button>
+        <button class="popup__close-button" id="addcard-close-button"></button>
         <h2 class="popup__heading">New Place</h2>
         <form class="popup__form" id="add-card-form">
           <input
             type="text"
             class="popup__title popup__input_type_title"
             placeholder="Title"
-            id="popup-name"
+            id="popup-title"
             name="title"
           />
           <input
@@ -96,16 +97,17 @@
         </form>
       </div>
     </section>
-
     <!-- view image popup -->
     <section class="popup" id="view-image-popup">
       <div class="popup__container popup__container_type_preview">
-        <button class="popup__close-button" id="popup-close-button"></button>
-        <img src="" alt="" class="popup__image-view" id="popup-image-view" />
+        <button
+          class="popup__close-button"
+          id="viewimage-close-button"
+        ></button>
+        <img src="#" alt="#" class="popup__image-view" id="popup-image-view" />
         <p class="popup__image-caption"></p>
       </div>
     </section>
-
     <!-- card template-->
     <template id="card-template">
       <li class="card">
