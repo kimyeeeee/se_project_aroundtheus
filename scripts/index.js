@@ -57,8 +57,8 @@ const viewCardCloseButton = viewCardImagePopup.querySelector(
 // Form Data
 const profileTitleInput = document.querySelector(".popup__title");
 const profileDescriptionInput = document.querySelector(".popup__description");
-const cardTitleInput = addCardForm.querySelector(".popup__input_type_title");
-const cardUrlInput = addCardForm.querySelector(".popup__input_type_url");
+const cardTitleInput = addCardForm.querySelector(".popup__form_type_title");
+const cardUrlInput = addCardForm.querySelector(".popup__form_type_url");
 
 // Functions
 function closePopUp(popup) {
