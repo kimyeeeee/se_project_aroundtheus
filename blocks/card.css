@@ -44,7 +44,7 @@
   width: 21px;
   border: none;
   border-radius: 0 0 10px;
-  transition: all 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 .card__like-button_active {
@@ -66,7 +66,6 @@
   border: none;
   transition: opacity 1s ease-in-out;
   background-size: contain;
-  transition: all 1s ease-in-out;
 }
 
 .card__delete-button:hover {
