@@ -54,29 +54,36 @@
         <button
           class="popup__close-button"
           id="editprofile-close-button"
+          type="button"
         ></button>
         <h2 class="popup__heading">Edit Profile</h2>
         <form class="popup__form" id="edit-profile-form">
           <input
             type="text"
             class="popup__input popup__input_type_name"
-            placeholder="Jacques Cousteau"
+            placeholder="Name"
             id="popup-name"
+            required
           />
           <input
             type="text"
             class="popup__input popup__input_type_description"
-            placeholder="Explorer"
+            placeholder="About"
             id="popup-description"
+            required
           />
-          <button class="popup__save-button">Save</button>
+          <button class="popup__save-button" type="submit">Save</button>
         </form>
       </div>
     </section>
     <!-- add card popup -->
     <section class="popup" id="add-card-popup">
       <div class="popup__container">
-        <button class="popup__close-button" id="addcard-close-button"></button>
+        <button
+          class="popup__close-button"
+          id="addcard-close-button"
+          type="button"
+        ></button>
         <h2 class="popup__heading">New Place</h2>
         <form class="popup__form" id="add-card-form">
           <input
@@ -85,15 +92,17 @@
             placeholder="Title"
             id="popup-title"
             name="title"
+            required
           />
           <input
-            type="text"
+            type="url"
             class="popup__input popup__input_type_url"
             placeholder="Image Link"
             id="popup-image-link"
             name="link"
+            required
           />
-          <button class="popup__save-button">Create</button>
+          <button class="popup__save-button" type="submit">Create</button>
         </form>
       </div>
     </section>
@@ -103,6 +112,7 @@
         <button
           class="popup__close-button"
           id="viewimage-close-button"
+          type="button"
         ></button>
         <img src="#" alt="#" class="popup__image-view" id="popup-image-view" />
         <p class="popup__image-caption"></p>
@@ -120,6 +130,6 @@
       </li>
     </template>
 
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>
