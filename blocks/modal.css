@@ -127,7 +127,7 @@
   }
   .popup__form {
     padding: 0 22px 0;
-    max-width: 238px;
+    width: 238px;
   }
   .popup__input_type_title {
     margin-top: 0;
@@ -149,7 +149,6 @@
     max-width: 100%;
   }
   .popup__save-button {
-    width: 100%;
     height: 46px;
     margin-bottom: 25px;
     font-size: 14px;
