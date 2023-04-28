@@ -141,7 +141,6 @@
   }
 
   .popup__input_type_description {
-    max-width: 238px;
     margin-top: 0;
     padding-top: 30px;
     padding-bottom: 13px;
@@ -150,7 +149,7 @@
     max-width: 100%;
   }
   .popup__save-button {
-    width: 238px;
+    width: 100%;
     height: 46px;
     margin-bottom: 25px;
     font-size: 14px;
