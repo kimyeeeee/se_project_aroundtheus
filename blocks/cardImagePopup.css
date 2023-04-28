@@ -20,3 +20,10 @@
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
 }
+
+@media screen and (max-width: 880px) {
+  .popup__image-caption {
+    size: 12px;
+    line-height: 15px;
+  }
+}

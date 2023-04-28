@@ -68,7 +68,6 @@ function closePopUp(popup) {
 }
 
 function openPopup(popup) {
-  console.log("test");
   popup.classList.add("popup_opened");
 }
 
@@ -81,11 +80,9 @@ function getCardElement(cardData) {
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
-  const likeButtons = cardElement.querySelectorAll(".card__like-button");
-  likeButtons.forEach((likeButton) => {
-    likeButton.addEventListener("click", () => {
-      likeButton.classList.toggle("card__like-button_active");
-    });
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
   });
 
   const deleteButton = cardElement.querySelector(".card__delete-button");
@@ -95,7 +92,7 @@ function getCardElement(cardData) {
 
   function handleViewCardImage(cardData) {
     viewCardImage.src = cardData.link;
-    viewCardImageCaption.alt = cardData.name;
+    viewCardImage.alt = cardData.name;
     viewCardImageCaption.textContent = cardData.name;
   }
   cardImageEl.addEventListener("click", () => {
@@ -126,6 +123,7 @@ function handleAddCardFormSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closePopUp(addCardPopup);
+  form.reset();
 }
 
 // Event Listeners
