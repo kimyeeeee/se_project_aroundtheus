@@ -57,22 +57,39 @@
           type="button"
         ></button>
         <h2 class="popup__heading">Edit Profile</h2>
-        <form class="popup__form" id="edit-profile-form">
+        <form class="popup__form" id="edit-profile-form" novalidate>
           <input
             type="text"
             class="popup__input popup__input_type_name"
             placeholder="Name"
             id="popup-name"
+            maxlength="40"
+            minlength="2"
             required
           />
+          <span
+            class="popup__input_type_error popup__error_visible"
+            id="owner-name-error"
+          ></span>
           <input
             type="text"
             class="popup__input popup__input_type_description"
             placeholder="About"
             id="popup-description"
+            maxlength="200"
+            minlength="2"
             required
           />
-          <button class="popup__save-button" type="submit">Save</button>
+          <span
+            class="popup__input_type_error popup__error_visible"
+            id="owner-description-error"
+          ></span>
+          <button
+            class="popup__save-button popup__button_disabled"
+            type="submit"
+          >
+            Save
+          </button>
         </form>
       </div>
     </section>
@@ -85,7 +102,7 @@
           type="button"
         ></button>
         <h2 class="popup__heading">New Place</h2>
-        <form class="popup__form" id="add-card-form">
+        <form class="popup__form" id="add-card-form" novalidate>
           <input
             type="text"
             class="popup__input popup__input_type_title"
@@ -94,6 +111,11 @@
             name="title"
             required
           />
+          <span
+            class="popup__input_type_error popup__error_visible"
+            id="owner-description-error"
+            >Please fill out this field.</span
+          >
           <input
             type="url"
             class="popup__input popup__input_type_url"
@@ -102,7 +124,18 @@
             name="link"
             required
           />
-          <button class="popup__save-button" type="submit">Create</button>
+          <span
+            class="popup__input_type_error popup__error_visible"
+            id="owner-description-error"
+            >Please enter a web address.</span
+          >
+          <button
+            class="popup__save-button popup__button_disabled"
+            type="submit"
+            disabled
+          >
+            Create
+          </button>
         </form>
       </div>
     </section>
