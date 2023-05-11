@@ -67,10 +67,7 @@
             minlength="2"
             required
           />
-          <span
-            class="popup__input_type_error popup__error_visible"
-            id="owner-name-error"
-          ></span>
+          <span class="popup__input_type_error" id="popup-name-error"></span>
           <input
             type="text"
             class="popup__input popup__input_type_description"
@@ -81,8 +78,8 @@
             required
           />
           <span
-            class="popup__input_type_error popup__error_visible"
-            id="owner-description-error"
+            class="popup__input_type_error"
+            id="popup-description-error"
           ></span>
           <button
             class="popup__save-button popup__button_disabled"
@@ -112,10 +109,9 @@
             required
           />
           <span
-            class="popup__input_type_error popup__error_visible"
-            id="owner-description-error"
-            >Please fill out this field.</span
-          >
+            class="popup__error popup__input_type_error"
+            id="popup-title-error"
+          ></span>
           <input
             type="url"
             class="popup__input popup__input_type_url"
@@ -125,14 +121,12 @@
             required
           />
           <span
-            class="popup__input_type_error popup__error_visible"
-            id="owner-description-error"
-            >Please enter a web address.</span
-          >
+            class="popup__error popup__input_type_error"
+            id="popup-image-link-error"
+          ></span>
           <button
             class="popup__save-button popup__button_disabled"
             type="submit"
-            disabled
           >
             Create
           </button>

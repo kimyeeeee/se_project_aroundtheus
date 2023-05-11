@@ -45,7 +45,7 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 
 function setEventListeners(formEl, options) {
   const { inputSelector } = options;
-  const inputEls = [...document.querySelector(options.formSelector)];
+  const inputEls = [...formEl.querySelectorAll(inputSelector)];
   const submitButton = formEl.querySelector(options.submitButtonSelector);
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
@@ -56,15 +56,15 @@ function setEventListeners(formEl, options) {
 }
 
 function enableValidation(options) {
-  const formsEls = [...document.querySelector(options.formSelector)];
+  const formsEls = [...document.querySelectorAll(options.formSelector)];
+  console.log(formsEls);
   formsEls.forEach((formEl) => {
     formEl.addEventListener("submit", (e) => {
-      checkInputValidity(formEl, inputEl, options);
+      e.preventDefault();
     });
 
     setEventListeners(formEl, options);
     // look for all inputs insdie of form
-
     // loop through all the inputs to see if all are valid
     // if input is not valid
     // grab the validation message
@@ -79,7 +79,7 @@ function enableValidation(options) {
 
 const options = {
   formSelector: ".popup__form",
-  inputSelecor: ".popup__input",
+  inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
