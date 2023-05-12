@@ -106,6 +106,7 @@ function getCardElement(cardData) {
 function renderCard(cardData, container) {
   const cardElement = getCardElement(cardData);
   container.prepend(cardElement);
+  addCardForm.reset();
 }
 
 // Event Handlers
@@ -148,9 +149,37 @@ viewCardCloseButton.addEventListener("click", () => {
   closePopUp(viewCardImagePopup);
 });
 
+profileEditPopup.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains(".popup") ||
+    e.target.classList.contains(".popup__close-button")
+  ) {
+    profileEditPopup.remove(".popup_opened");
+  }
+});
+
+addCardPopup.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains(".popup") ||
+    e.target.classList.contains(".popup__close-button")
+  ) {
+    addCardPopup.remove(".popup_opened");
+  }
+});
+
+viewCardImagePopup.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("popup") ||
+    e.target.classList.contains("popup__close-button")
+  ) {
+    viewCardImagePopup.remove("popup_opened");
+  }
+});
+
 // Form listeners
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
