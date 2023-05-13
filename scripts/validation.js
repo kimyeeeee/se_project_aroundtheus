@@ -21,7 +21,7 @@ const options = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__button_disabled",
+  inactiveButtonClass: "popup__save-button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
@@ -45,7 +45,6 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 function checkInputValidity(formEl, inputEl, options, submitButton) {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, options);
-    disableButton(options, submitButton);
   } else {
     hideInputError(formEl, inputEl, options);
   }
@@ -76,6 +75,7 @@ function setEventListeners(formEl, options) {
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
   const submitButton = formEl.querySelector(options.submitButtonSelector);
   inputEls.forEach((inputEl) => {
+    toggleButtonState(inputEls, submitButton, options);
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options, submitButton);
       toggleButtonState(inputEls, submitButton, options);

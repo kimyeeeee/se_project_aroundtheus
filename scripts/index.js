@@ -65,12 +65,12 @@ const cardUrlInput = addCardForm.querySelector(".popup__input_type_url");
 // Functions
 function closePopUp(popup) {
   popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", EscKeyHandler);
+  document.removeEventListener("keydown", handleClosePopupWithEsc);
 }
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  document.addEventListener("keydown", EscKeyHandler);
+  document.addEventListener("keydown", handleClosePopupWithEsc);
 }
 
 function getCardElement(cardData) {
@@ -108,7 +108,13 @@ function getCardElement(cardData) {
 function renderCard(cardData, container) {
   const cardElement = getCardElement(cardData);
   container.prepend(cardElement);
-  addCardForm.reset();
+}
+
+function closePopUpOnRemoteClick(e) {
+  const openPopup = document.querySelector(".popup_opened");
+  if (e.target.classList.contains("popup_opened")) {
+    closePopUp(e.target);
+  }
 }
 
 // Event Handlers
@@ -127,9 +133,10 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopUp(addCardPopup);
   addCardForm.reset();
+  toggleButtonState(inputEls, submitButton, options);
 }
 
-const EscKeyHandler = (e) => {
+const handleClosePopupWithEsc = (e) => {
   if (e.key === "Escape") {
     const openPopup = document.querySelector(".popup_opened");
     closePopUp(openPopup);
@@ -158,33 +165,6 @@ viewCardCloseButton.addEventListener("click", () => {
   closePopUp(viewCardImagePopup);
 });
 
-profileEditPopup.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("popup") ||
-    e.target.classList.contains("popup__close-button")
-  ) {
-    closePopUp(profileEditPopup);
-  }
-});
-
-addCardPopup.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("popup") ||
-    e.target.classList.contains("popup__close-button")
-  ) {
-    closePopUp(addCardPopup);
-  }
-});
-
-viewCardImagePopup.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("popup") ||
-    e.target.classList.contains("popup__close-button")
-  ) {
-    closePopUp(viewCardImagePopup);
-  }
-});
-
 // Form listeners
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
@@ -192,3 +172,7 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+
+profileEditPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
+addCardPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
+viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);

@@ -101,12 +101,15 @@
   padding: 0;
 }
 
-.popup__save-button:hover {
+.popup__save-button:hover:not(:disabled) {
   opacity: 0.8;
   cursor: pointer;
 }
-
-.popup__button_disabled {
+.popup__save-button_disabled:hover {
+  opacity: 0.2;
+  cursor: default;
+}
+.popup__save-button_disabled {
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: white;
