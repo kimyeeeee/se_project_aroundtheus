@@ -111,7 +111,6 @@ function renderCard(cardData, container) {
 }
 
 function closePopUpOnRemoteClick(e) {
-  const openPopup = document.querySelector(".popup_opened");
   if (e.target.classList.contains("popup_opened")) {
     closePopUp(e.target);
   }
@@ -133,7 +132,7 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopUp(addCardPopup);
   addCardForm.reset();
-  toggleButtonState(inputEls, submitButton, options);
+  toggleButtonState(inputEls, submitButtonSelector, options);
 }
 
 const handleClosePopupWithEsc = (e) => {
