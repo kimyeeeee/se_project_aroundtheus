@@ -61,6 +61,8 @@ const profileDescriptionInput = document.querySelector(
 );
 const cardTitleInput = addCardForm.querySelector(".popup__input_type_title");
 const cardUrlInput = addCardForm.querySelector(".popup__input_type_url");
+const cardFormInputs = [cardTitleInput, cardUrlInput];
+const cardFormSubmitButton = addCardForm.querySelector(".popup__save-button");
 
 // Functions
 function closePopUp(popup) {
@@ -132,7 +134,7 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopUp(addCardPopup);
   addCardForm.reset();
-  toggleButtonState(inputEls, submitButtonSelector, options);
+  toggleButtonState(cardFormInputs, cardFormSubmitButton, options);
 }
 
 const handleClosePopupWithEsc = (e) => {
