@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,11 +26,24 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, card - template);
+
+/* -------------------------------------------------------------------------- */
+/*                                  templates                                  */
+/* -------------------------------------------------------------------------- */
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
-// Wrappers
+/* -------------------------------------------------------------------------- */
+/*                                  Wrappers                                  */
+/* -------------------------------------------------------------------------- */
 const cardsWrap = document.querySelector(".cards__list");
 const profileEditPopup = document.querySelector("#profile-edit-popup");
 const addCardPopup = document.querySelector("#add-card-popup");
@@ -36,7 +51,9 @@ const profileEditForm = profileEditPopup.querySelector("#edit-profile-form");
 const addCardForm = addCardPopup.querySelector("#add-card-form");
 const viewCardImagePopup = document.querySelector("#view-image-popup");
 
-// Buttons and other DOM nodes
+/* -------------------------------------------------------------------------- */
+/*                       // Buttons and other DOM nodes                       */
+/* -------------------------------------------------------------------------- */
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileCloseButton = profileEditPopup.querySelector(
   "#editprofile-close-button"
@@ -54,7 +71,9 @@ const viewCardCloseButton = viewCardImagePopup.querySelector(
   "#viewimage-close-button"
 );
 
-// Form Data
+/* -------------------------------------------------------------------------- */
+/*                                // Form Data                                */
+/* -------------------------------------------------------------------------- */
 const profileTitleInput = document.querySelector(".popup__input_type_name");
 const profileDescriptionInput = document.querySelector(
   ".popup__input_type_description"
@@ -64,7 +83,9 @@ const cardUrlInput = addCardForm.querySelector(".popup__input_type_url");
 const cardFormInputs = [cardTitleInput, cardUrlInput];
 const cardFormSubmitButton = addCardForm.querySelector(".popup__save-button");
 
-// Functions
+/* -------------------------------------------------------------------------- */
+/*                                // Functions                                */
+/* -------------------------------------------------------------------------- */
 function closePopUp(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", handleClosePopupWithEsc);
@@ -89,10 +110,10 @@ function getCardElement(cardData) {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // const deleteButton = cardElement.querySelector(".card__delete-button");
+  // deleteButton.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
 
   function handleViewCardImage(cardData) {
     viewCardImage.src = cardData.link;
