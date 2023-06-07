@@ -157,7 +157,7 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopUp(addCardPopup);
   addCardForm.reset();
-  this._toggleButtonState(cardFormInputs, cardFormSubmitButton, options);
+  this._toggleButtonState(cardFormInputs, cardFormSubmitButton, settings);
 }
 
 const handleClosePopupWithEsc = (e) => {

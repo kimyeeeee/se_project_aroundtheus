@@ -28,41 +28,41 @@
 
 // enableValidation(options);
 
-function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
-  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.add(inputErrorClass);
-  errorMessageEl.textContent = inputEl.validationMessage;
-  errorMessageEl.classList.add(errorClass);
-}
+// function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
+//   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+//   inputEl.classList.add(inputErrorClass);
+//   errorMessageEl.textContent = inputEl.validationMessage;
+//   errorMessageEl.classList.add(errorClass);
+// }
 
-function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
-  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.remove(inputErrorClass);
-  errorMessageEl.textContent = ``;
-  errorMessageEl.classList.remove(errorClass);
-}
+// function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
+//   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+//   inputEl.classList.remove(inputErrorClass);
+//   errorMessageEl.textContent = ``;
+//   errorMessageEl.classList.remove(errorClass);
+// }
 
-function checkInputValidity(formEl, inputEl, options, submitButton) {
-  if (!inputEl.validity.valid) {
-    showInputError(formEl, inputEl, options);
-  } else {
-    hideInputError(formEl, inputEl, options);
-  }
-}
+// function checkInputValidity(formEl, inputEl, options, submitButton) {
+//   if (!inputEl.validity.valid) {
+//     showInputError(formEl, inputEl, options);
+//   } else {
+//     hideInputError(formEl, inputEl, options);
+//   }
+// }
 
-function hasInvalidInput(inputList) {
-  return !inputList.every((inputEl) => inputEl.validity.valid);
-}
+// function hasInvalidInput(inputList) {
+//   return !inputList.every((inputEl) => inputEl.validity.valid);
+// }
 
-function disableButton({ inactiveButtonClass }, submitButton) {
-  submitButton.classList.add(inactiveButtonClass);
-  submitButton.disabled = true;
-}
+// function disableButton({ inactiveButtonClass }, submitButton) {
+//   submitButton.classList.add(inactiveButtonClass);
+//   submitButton.disabled = true;
+// }
 
-function enableButton({ inactiveButtonClass }, submitButton) {
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
-}
+// function enableButton({ inactiveButtonClass }, submitButton) {
+//   submitButton.classList.remove(inactiveButtonClass);
+//   submitButton.disabled = false;
+// }
 
 // function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 //   if (hasInvalidInput(inputEls)) {

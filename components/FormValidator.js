@@ -24,14 +24,14 @@ export default class FormValidator {
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
-      showInputError(this._form, inputEl, settings);
+      this._showInputError(inputEl);
     } else {
-      hideInputError(this._form, inputEl, settings);
+      this._hideInputError(inputEl);
     }
   }
 
-  _hasInvalidInput(cardListEl) {
-    return !cardListEl.every((inputEl) => inputEl.validity.valid);
+  _hasInvalidInput(inputEls) {
+    return !inputEls.every((inputEl) => inputEl.validity.valid);
   }
 
   _disableButton() {
@@ -45,22 +45,20 @@ export default class FormValidator {
   }
 
   _toggleButtonState(inputEls) {
-    if (_hasInvalidInput(inputEls)) {
-      _disableButton(this.submitButton);
-    } else _enableButton(this.submitButton);
+    if (this._hasInvalidInput(this.inputEls)) {
+      this._disableButton(this.submitButtonSelector);
+    } else this._enableButton(this.submitButtonSelector);
   }
 
   _setEventListeners() {
     this._toggleButtonState();
     this.inputEls = [...this.form.querySelectorAll(this._inputSelector)];
-    this.submitButton = this.form.querySelector(
-      this._submitButtonSelectorsubmitButtonSelector
-    );
+    this.submitButton = this.form.querySelector(this._submitButtonSelector);
 
     this.inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
-        checkInputValidity(this.form, inputEl, settings, submitButton);
-        toggleButtonState(inputEls, submitButton, settings);
+        this._checkInputValidity(inputEl, this.submitButton);
+        this._toggleButtonState(inputEls, this.submitButton);
       });
     });
   }
