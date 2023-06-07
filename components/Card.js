@@ -7,7 +7,7 @@ export default class Card {
 
   _setEventListeners() {
     //".card__like-button"
-    this._cardElemennt
+    this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
         this._handleLikeIcon();
@@ -37,9 +37,10 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
     //get the card view
+
     //set event listeners
     this._setEventListeners();
     //return the card
-    return this.getView();
+    return Card;
   }
 }

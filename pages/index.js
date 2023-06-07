@@ -1,4 +1,5 @@
-import Card from "./Card.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -32,7 +33,8 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData, card - template);
+const card = new Card(cardData, "#card-template");
+card.getView();
 
 /* -------------------------------------------------------------------------- */
 /*                                  templates                                  */
@@ -105,10 +107,10 @@ function getCardElement(cardData) {
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+  // const likeButton = cardElement.querySelector(".card__like-button");
+  // likeButton.addEventListener("click", () => {
+  //   likeButton.classList.toggle("card__like-button_active");
+  // });
 
   // const deleteButton = cardElement.querySelector(".card__delete-button");
   // deleteButton.addEventListener("click", () => {
@@ -155,7 +157,7 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closePopUp(addCardPopup);
   addCardForm.reset();
-  toggleButtonState(cardFormInputs, cardFormSubmitButton, options);
+  this._toggleButtonState(cardFormInputs, cardFormSubmitButton, options);
 }
 
 const handleClosePopupWithEsc = (e) => {
@@ -198,3 +200,21 @@ initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 profileEditPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 addCardPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
+
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+const editForm = document.querySelector("#edit-profile-form");
+const addForm = document.querySelector("#add-card-form");
+const editFormValidator = new FormValidator(settings, editForm);
+const addFormValidator = new FormValidator(settings, addForm);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+//query form from HTML and pass into ^
+//invoke enable validation.formvalidator
