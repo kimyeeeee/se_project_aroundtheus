@@ -105,44 +105,42 @@ const addFormValidator = new FormValidator(settings, addForm);
 /*                                // Functions                                */
 /* -------------------------------------------------------------------------- */
 
-function getCardElement(cardData) {
-  // const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
+// function getCardElement(cardData) {
+//   // const cardElement = cardTemplate.cloneNode(true);
+//   const cardImageEl = cardElement.querySelector(".card__image");
+//   const cardTitleEl = cardElement.querySelector(".card__title");
 
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
+//   cardImageEl.src = cardData.link;
+//   cardImageEl.alt = cardData.name;
+//   cardTitleEl.textContent = cardData.name;
 
-  // likeButton.addEventListener("click", () => {
-  //   likeButton.classList.toggle("card__like-button_active");
-  // });
+//   // likeButton.addEventListener("click", () => {
+//   //   likeButton.classList.toggle("card__like-button_active");
+//   // });
 
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+//   const deleteButton = cardElement.querySelector(".card__delete-button");
+//   deleteButton.addEventListener("click", () => {
+//     cardElement.remove();
+//   });
 
-  function handleViewCardImage(cardData) {
-    viewCardImage.src = cardData.link;
-    viewCardImage.alt = cardData.name;
-    viewCardImageCaption.textContent = cardData.name;
-  }
-  cardImageEl.addEventListener("click", () => {
-    openPopup(viewCardImagePopup);
-    handleViewCardImage(cardData);
-  });
+//   function handleViewCardImage(cardData) {
+//     viewCardImage.src = cardData.link;
+//     viewCardImage.alt = cardData.name;
+//     viewCardImageCaption.textContent = cardData.name;
+//   }
+//   cardImageEl.addEventListener("click", () => {
+//     openPopup(viewCardImagePopup);
+//     handleViewCardImage(cardData);
+//   });
 
-  return cardElement;
-}
+//   return cardElement;
+// }
 
 function renderCard(cardData, container) {
-  const cardElement = getCardElement(cardData);
-  container.prepend(cardElement);
+  const card = new Card(cardData, "#card-template");
+  card.getView();
+  container.prepend(this._cardElement);
 }
-
-const card = new Card(cardData, "#card-template");
-card.getView();
 
 // Event Handlers
 
