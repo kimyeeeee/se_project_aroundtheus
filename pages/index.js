@@ -138,8 +138,7 @@ const addFormValidator = new FormValidator(settings, addForm);
 
 function renderCard(cardData, container) {
   const card = new Card(cardData, "#card-template");
-  card.getView();
-  container.prepend(this._cardElement);
+  container.prepend(card.getView());
 }
 
 // Event Handlers
@@ -177,7 +176,7 @@ profileCloseButton.addEventListener("click", () => {
 
 addCardButton.addEventListener("click", () => {
   openPopup(addCardPopup);
-  toggleButtonState();
+  this.toggleButtonState();
 });
 addCardCloseButton.addEventListener("click", () => {
   closePopUp(addCardPopup);
