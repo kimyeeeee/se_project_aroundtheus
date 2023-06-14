@@ -1,3 +1,5 @@
+import { openPopup } from "../utils/utils.js";
+
 export default class Card {
   constructor({ name, link }, cardSelector) {
     this._name = name;
@@ -26,7 +28,14 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
+
+    this._cardImageEl.addEventListener("click", () => {
+      console.log("test");
+      openPopup(this._viewCardImagePopup);
+      this._handleViewCardImage(cardData);
+    });
   }
+
   _handleLikeIcon() {
     this._cardElement
       .querySelector(".card__like-button")
@@ -36,10 +45,15 @@ export default class Card {
   _handleDeleteCard() {
     this._cardElement.remove();
   }
+
   _handleViewCardImage() {
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = this._name;
     this._cardTitleEl.textContent = this._name;
+  }
+
+  _viewCardImagePopup() {
+    openPopup(viewCardImagePopup);
   }
 
   getView() {
@@ -50,6 +64,7 @@ export default class Card {
 
     //get the card view
     this._handleViewCardImage();
+    // this._viewCardImagePopup();
     //set event listeners
     this._setEventListeners();
     //return the card
