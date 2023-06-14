@@ -198,5 +198,3 @@ viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-//query form from HTML and pass into ^
-//invoke enable validation.formvalidator
