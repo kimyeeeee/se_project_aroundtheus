@@ -5,7 +5,8 @@ import {
   closePopUpOnRemoteClick,
   openPopup,
   closePopUp,
-} from "../utils/utils.js";
+} from "../../utils/utils.js";
+import "./styles/index.css";
 
 const initialCards = [
   {
@@ -39,6 +40,17 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
+const section = new Section(
+  {
+    items: initalCards,
+    renderer: (cardData) => {
+      const card = new Card(cardData, selector);
+      section.additem(card.getView());
+    },
+  },
+  ".cards__list"
+);
+section.renderItems();
 /* -------------------------------------------------------------------------- */
 /*                                  templates                                  */
 /* -------------------------------------------------------------------------- */
@@ -172,3 +184,10 @@ viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+
+//popup
+
+const newCardPopup = new PopupWitForm("#add-card-popup", () => {});
+newCardPopup.open();
+
+newCardPopup.close();
