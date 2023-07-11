@@ -23,9 +23,15 @@ const handleClosePopupWithEsc = (e) => {
   }
 };
 
+const cardsConfig = {
+  containerSelector: ".cards__list",
+  cardTemplateSelector: "#card-template",
+};
+
 export {
   handleClosePopupWithEsc,
   closePopUpOnRemoteClick,
   openPopup,
   closePopUp,
+  cardsConfig,
 };

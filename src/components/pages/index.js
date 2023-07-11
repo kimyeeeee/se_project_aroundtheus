@@ -1,12 +1,14 @@
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+import "../pages/index.css";
+import Card from "../Card.js";
+import FormValidator from "../FormValidator.js";
 import {
   handleClosePopupWithEsc,
   closePopUpOnRemoteClick,
   openPopup,
   closePopUp,
+  cardsConfig,
 } from "../../utils/utils.js";
-import "./styles/index.css";
+import Section from "../Section.js";
 
 const initialCards = [
   {
@@ -40,16 +42,13 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const section = new Section(
-  {
-    items: initalCards,
-    renderer: (cardData) => {
-      const card = new Card(cardData, selector);
-      section.additem(card.getView());
-    },
+const section = new Section({
+  items: initialCards,
+  renderer: (cardData) => {
+    const card = new Card(cardData, cardsConfig.cardTemplateSelector);
+    section.additem(card.getView());
   },
-  ".cards__list"
-);
+});
 section.renderItems();
 /* -------------------------------------------------------------------------- */
 /*                                  templates                                  */
@@ -155,9 +154,9 @@ profileEditButton.addEventListener("click", () => {
 
 // Form listeners
 
-profileCloseButton.addEventListener("click", () => {
-  closePopUp(profileEditPopup);
-});
+// profileCloseButton.addEventListener("click", () => {
+//   closePopUp(profileEditPopup);
+// });
 
 addCardButton.addEventListener("click", () => {
   openPopup(addCardPopup);
@@ -168,9 +167,9 @@ addCardCloseButton.addEventListener("click", () => {
   closePopUp(addCardPopup);
 });
 
-viewCardCloseButton.addEventListener("click", () => {
-  closePopUp(viewCardImagePopup);
-});
+// viewCardCloseButton.addEventListener("click", () => {
+//   closePopUp(viewCardImagePopup);
+// });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
@@ -187,7 +186,7 @@ addFormValidator.enableValidation();
 
 //popup
 
-const newCardPopup = new PopupWitForm("#add-card-popup", () => {});
+const newCardPopup = new PopupWithForm("#add-card-popup", () => {});
 newCardPopup.open();
 
 newCardPopup.close();
