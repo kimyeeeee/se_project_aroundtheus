@@ -9,6 +9,7 @@ import {
   cardsConfig,
 } from "../../utils/utils.js";
 import Section from "../Section.js";
+import PopupWithForm from "../PopupWithForm";
 
 const initialCards = [
   {
@@ -146,11 +147,11 @@ function handleAddCardFormSubmit(e) {
 
 // Event Listeners
 
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  openPopup(profileEditPopup);
-});
+// profileEditButton.addEventListener("click", () => {
+//   profileTitleInput.value = profileTitle.textContent;
+//   profileDescriptionInput.value = profileDescription.textContent;
+//   openPopup(profileEditPopup);
+// });
 
 // Form listeners
 
@@ -158,14 +159,14 @@ profileEditButton.addEventListener("click", () => {
 //   closePopUp(profileEditPopup);
 // });
 
-addCardButton.addEventListener("click", () => {
-  openPopup(addCardPopup);
-  addFormValidator.toggleButtonState();
-});
+// addCardButton.addEventListener("click", () => {
+//   openPopup(addCardPopup);
+//   addFormValidator.toggleButtonState();
+// });
 
-addCardCloseButton.addEventListener("click", () => {
-  closePopUp(addCardPopup);
-});
+// addCardCloseButton.addEventListener("click", () => {
+//   closePopUp(addCardPopup);
+// });
 
 // viewCardCloseButton.addEventListener("click", () => {
 //   closePopUp(viewCardImagePopup);
@@ -174,8 +175,6 @@ addCardCloseButton.addEventListener("click", () => {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
-
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 profileEditPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 addCardPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
