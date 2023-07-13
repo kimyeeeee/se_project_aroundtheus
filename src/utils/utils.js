@@ -1,4 +1,4 @@
-//   Open & Close PopUps
+// //   Open & Close PopUps
 
 function closePopUp(popup) {
   popup.classList.remove("popup_opened");

@@ -9,7 +9,9 @@ import {
   cardsConfig,
 } from "../../utils/utils.js";
 import Section from "../Section.js";
-import PopupWithForm from "../PopupWithForm";
+import PopupWithForm from "../PopupWithForm.js";
+import PopupWithImage from "../PopupWithImage.js";
+import UserInfo from "../UserInfo.js";
 
 const initialCards = [
   {
@@ -176,12 +178,15 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-profileEditPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
-addCardPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
-viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
+// profileEditPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
+// addCardPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
+// viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+
+//Popup Class
+const editCardPopupForm = new PopupWithForm(profileEditForm);
 
 //popup
 
@@ -189,3 +194,11 @@ const newCardPopup = new PopupWithForm("#add-card-popup", () => {});
 newCardPopup.open();
 
 newCardPopup.close();
+
+/* ------------------------------------------------------------------------ */
+/*                                 User Info                                */
+/* ------------------------------------------------------------------------ */
+const userInfo = new UserInfo({
+  userName: ".profile__title",
+  userDescription: ".profile__description",
+});

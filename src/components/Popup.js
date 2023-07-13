@@ -1,44 +1,45 @@
-import {
-  closePopUp,
-  handleClosePopupWithEsc,
-  openPopup,
-} from "../../src/utils/utils.js";
-
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
+    this._popupElementCloseButton =
+      this._popupElement.querySelector(".popup__close");
   }
 
   open() {
     this._popupElement.classList.add("popup_opened");
-    document.addEventListener("keydown", handleClosePopupWithEsc);
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove("popup_opened");
-    document.removeEventListener("keydown", handleClosePopupWithEsc);
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   _handleEscClose() {
     if (e.key === "Escape") {
-      const openPopup = document.querySelector(".popup_opened");
-      closePopUp(openPopup);
+      this.close();
     }
   }
 
-  // function closePopUpOnRemoteClick(e) {
-  //   if (e.target.classList.contains("popup_opened")) {
-  //     closePopUp(e.target);
-  //   }
-  // }
-
   setEventListeners() {
-    profileCloseButton.addEventListener("click", () => {
-      closePopUp(profileEditPopup);
+    this._popupElementCloseButton.addEventListener("click", () => {
+      this.close();
     });
 
-    viewCardCloseButton.addEventListener("click", () => {
-      closePopUp(viewCardImagePopup);
+    this._popupElement.addEventListener("mousedown", () => {
+      if (e.target.classList.contains("popup_opened")) {
+        this.close(e.target);
+      }
     });
+    // viewCardCloseButton.addEventListener("click", () => {
+    //   closePopup(viewCardImagePopup);
+    // });
+
+    // addCardCloseButton.addEventListener("click", () => {
+    //   closePopup(addCardPopup);
+    // });
+
+    // addCardPopup.addEventListener("mousedown", this._closePopUpOnRemoteClick);
+    // viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
   }
 }
