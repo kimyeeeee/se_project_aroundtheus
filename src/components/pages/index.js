@@ -149,11 +149,11 @@ function handleAddCardFormSubmit(e) {
 
 // Event Listeners
 
-// profileEditButton.addEventListener("click", () => {
-//   profileTitleInput.value = profileTitle.textContent;
-//   profileDescriptionInput.value = profileDescription.textContent;
-//   openPopup(profileEditPopup);
-// });
+profileEditButton.addEventListener("click", () => {
+  editCardPopupForm.open();
+  // profileTitleInput.value = profileTitle.textContent;
+  // profileDescriptionInput.value = profileDescription.textContent;
+});
 
 // Form listeners
 
@@ -161,10 +161,10 @@ function handleAddCardFormSubmit(e) {
 //   closePopUp(profileEditPopup);
 // });
 
-// addCardButton.addEventListener("click", () => {
-//   openPopup(addCardPopup);
-//   addFormValidator.toggleButtonState();
-// });
+addCardButton.addEventListener("click", () => {
+  newCardPopup.open();
+  addFormValidator.toggleButtonState();
+});
 
 // addCardCloseButton.addEventListener("click", () => {
 //   closePopUp(addCardPopup);
@@ -185,15 +185,17 @@ addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-//Popup Class
-const editCardPopupForm = new PopupWithForm(profileEditForm);
+/* -------------------------------------------------------------------------- */
+/*                                //Popup Class                               */
+/* -------------------------------------------------------------------------- */
+const editCardPopupForm = new PopupWithForm("#edit-profile-form", () => {});
 
 //popup
 
 const newCardPopup = new PopupWithForm("#add-card-popup", () => {});
-newCardPopup.open();
+// newCardPopup.open();
 
-newCardPopup.close();
+// newCardPopup.close();
 
 /* ------------------------------------------------------------------------ */
 /*                                 User Info                                */
