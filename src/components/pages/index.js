@@ -149,22 +149,11 @@ function handleAddCardFormSubmit(e) {
 
 // Event Listeners
 
-profileEditButton.addEventListener("click", () => {
-  editCardPopupForm.open();
-  // profileTitleInput.value = profileTitle.textContent;
-  // profileDescriptionInput.value = profileDescription.textContent;
-});
-
 // Form listeners
 
 // profileCloseButton.addEventListener("click", () => {
 //   closePopUp(profileEditPopup);
 // });
-
-addCardButton.addEventListener("click", () => {
-  newCardPopup.open();
-  addFormValidator.toggleButtonState();
-});
 
 // addCardCloseButton.addEventListener("click", () => {
 //   closePopUp(addCardPopup);
@@ -186,16 +175,27 @@ editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
-/*                                //Popup Class                               */
+/*                                Popups                                      */
 /* -------------------------------------------------------------------------- */
-const editCardPopupForm = new PopupWithForm("#edit-profile-form", () => {});
+const editCardPopup = new PopupWithForm("#profile-edit-popup", () => {});
+editCardPopup.setEventListeners();
 
-//popup
+const viewImagePopup = new PopupWithImage("#view-image-popup", () => {});
+viewImagePopup.setEventListeners();
 
 const newCardPopup = new PopupWithForm("#add-card-popup", () => {});
-// newCardPopup.open();
+newCardPopup.setEventListeners();
 
-// newCardPopup.close();
+profileEditButton.addEventListener("click", () => {
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  editCardPopup.open();
+});
+
+addCardButton.addEventListener("click", () => {
+  newCardPopup.open();
+  addFormValidator.toggleButtonState();
+});
 
 /* ------------------------------------------------------------------------ */
 /*                                 User Info                                */
