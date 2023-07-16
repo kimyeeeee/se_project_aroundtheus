@@ -27,20 +27,10 @@ export default class Popup {
       this.close();
     });
 
-    this._popupElement.addEventListener("mousedown", () => {
-      if (e.target.classList.contains("popup")) {
+    this._popupElement.addEventListener("mousedown", (e) => {
+      if (e.target.classList.contains("popup_opened")) {
         this.close(e.target);
       }
     });
-    // viewCardCloseButton.addEventListener("click", () => {
-    //   closePopup(viewCardImagePopup);
-    // });
-
-    // addCardCloseButton.addEventListener("click", () => {
-    //   closePopup(addCardPopup);
-    // });
-
-    // addCardPopup.addEventListener("mousedown", this._closePopUpOnRemoteClick);
-    // viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
   }
 }

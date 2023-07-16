@@ -1,6 +1,5 @@
-import { openPopup } from "../utils/utils.js";
-
-const imageViewPopup = document.querySelector("#view-image-popup");
+// import { openPopup } from "../utils/utils.js";
+import Popup from "./Popup.js";
 
 export default class Card {
   constructor({ name, link }, cardSelector) {
@@ -32,11 +31,12 @@ export default class Card {
       });
 
     this._cardImageEl.addEventListener("click", () => {
-      imageViewPopup.querySelector(".popup__image-view").src = this._link;
-      imageViewPopup.querySelector(".popup__image-view").alt = this._name;
-      imageViewPopup.querySelector(".popup__image-caption").textContent =
+      const viewImagePopup = document.querySelector("#view-image-popup");
+      viewImagePopup.querySelector(".popup__image-view").src = this._link;
+      viewImagePopup.querySelector(".popup__image-view").alt = this._name;
+      viewImagePopup.querySelector(".popup__image-caption").textContent =
         this._name;
-      openPopup(imageViewPopup);
+      this.open(viewImagePopup);
     });
   }
 

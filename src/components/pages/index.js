@@ -1,13 +1,7 @@
 import "../pages/index.css";
 import Card from "../Card.js";
 import FormValidator from "../FormValidator.js";
-import {
-  handleClosePopupWithEsc,
-  closePopUpOnRemoteClick,
-  openPopup,
-  closePopUp,
-  cardsConfig,
-} from "../../utils/utils.js";
+import { handleClosePopupWithEsc, cardsConfig } from "../../utils/utils.js";
 import Section from "../Section.js";
 import PopupWithForm from "../PopupWithForm.js";
 import PopupWithImage from "../PopupWithImage.js";
@@ -44,6 +38,11 @@ const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
+
+// const cardsConfig = {
+//   containerSelector: ".cards__list",
+//   cardTemplateSelector: "#card-template",
+// };
 
 const section = new Section({
   items: initialCards,
@@ -130,7 +129,7 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopUp(profileEditPopup);
+  this.close(profileEditPopup);
 }
 
 function handleAddCardFormSubmit(e) {
@@ -138,7 +137,7 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
-  closePopUp(addCardPopup);
+  this.close(addCardPopup);
   addCardForm.reset();
   addFormValidator.toggleButtonState(
     cardFormInputs,
