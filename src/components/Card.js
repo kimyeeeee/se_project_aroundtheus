@@ -1,5 +1,5 @@
 // import { openPopup } from "../utils/utils.js";
-import Popup from "./Popup.js";
+// import Popup from "./Popup.js";
 
 export default class Card {
   constructor({ name, link }, cardSelector) {
@@ -36,7 +36,7 @@ export default class Card {
       viewImagePopup.querySelector(".popup__image-view").alt = this._name;
       viewImagePopup.querySelector(".popup__image-caption").textContent =
         this._name;
-      this.open(viewImagePopup);
+      // this.open(viewImagePopup);
     });
   }
 

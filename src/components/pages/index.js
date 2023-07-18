@@ -129,7 +129,7 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  this.close(profileEditPopup);
+  PopupWithImage.close();
 }
 
 function handleAddCardFormSubmit(e) {
@@ -148,27 +148,9 @@ function handleAddCardFormSubmit(e) {
 
 // Event Listeners
 
-// Form listeners
-
-// profileCloseButton.addEventListener("click", () => {
-//   closePopUp(profileEditPopup);
-// });
-
-// addCardCloseButton.addEventListener("click", () => {
-//   closePopUp(addCardPopup);
-// });
-
-// viewCardCloseButton.addEventListener("click", () => {
-//   closePopUp(viewCardImagePopup);
-// });
-
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
-
-// profileEditPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
-// addCardPopup.addEventListener("mousedown", closePopUpOnRemoteClick);
-// viewCardImagePopup.addEventListener("mousedown", closePopUpOnRemoteClick);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
