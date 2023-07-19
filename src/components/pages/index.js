@@ -39,16 +39,11 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-// const cardsConfig = {
-//   containerSelector: ".cards__list",
-//   cardTemplateSelector: "#card-template",
-// };
-
 const section = new Section({
   items: initialCards,
   renderer: (cardData) => {
-    const card = new Card(cardData, cardsConfig.cardTemplateSelector);
-    section.additem(card.getView());
+    const card = renderCard(cardData);
+    section.additem(card);
   },
 });
 section.renderItems();
@@ -118,9 +113,11 @@ const addFormValidator = new FormValidator(settings, addForm);
 /*                                // Functions                                */
 /* -------------------------------------------------------------------------- */
 
-function renderCard(cardData, container) {
-  const card = new Card(cardData, "#card-template");
-  container.prepend(card.getView());
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template", (name, link) => {
+    viewImagePopup.open({ name, link });
+  });
+  return card.getView();
 }
 
 // Event Handlers
@@ -129,7 +126,7 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  PopupWithImage.close();
+  editCardPopup.close();
 }
 
 function handleAddCardFormSubmit(e) {
@@ -137,7 +134,7 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
-  this.close(addCardPopup);
+  newCardPopup.close();
   addCardForm.reset();
   addFormValidator.toggleButtonState(
     cardFormInputs,
@@ -146,25 +143,43 @@ function handleAddCardFormSubmit(e) {
   );
 }
 
-// Event Listeners
+/* -------------------------------------------------------------------------- */
+/*                             // Event Listeners                             */
+/* -------------------------------------------------------------------------- */
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
+/* -------------------------------------------------------------------------- */
+/*                                 Validation                                 */
+/* -------------------------------------------------------------------------- */
+
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
-/*                                Popups                                      */
+/*                               PopupWithImage                               */
 /* -------------------------------------------------------------------------- */
-const editCardPopup = new PopupWithForm("#profile-edit-popup", () => {});
-editCardPopup.setEventListeners();
 
 const viewImagePopup = new PopupWithImage("#view-image-popup", () => {});
 viewImagePopup.setEventListeners();
 
-const newCardPopup = new PopupWithForm("#add-card-popup", () => {});
+/* ------------------------------------------------------------------------------- */
+/*                                PopupWithForm                                    */
+/* ------------------------------------------------------------------------------- */
+
+//edit profile popup
+const editCardPopup = new PopupWithForm("#profile-edit-popup", () => {});
+editCardPopup.setEventListeners();
+
+//add card popup
+
+const newCardPopup = new PopupWithForm(
+  "#add-card-popup",
+  handleAddCardFormSubmit();) => {
+    renderCard();
+  };
 newCardPopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {

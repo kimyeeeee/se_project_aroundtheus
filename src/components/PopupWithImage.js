@@ -16,6 +16,6 @@ export default class PopupwithImage extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupElement.querySelector(".popup__image-caption");
+    this._popupElement.querySelector("click", this._viewImageClick);
   }
 }
