@@ -9,10 +9,10 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     const inputValues = {};
-    this._popupForm.querySelector(".popup_input").forEach((input) => {
-      values[input.name] = input.value;
+    this._popupForm.querySelectorAll(".popup__input").forEach((input) => {
+      inputValues[input.name] = input.value;
     });
-    return values;
+    return inputValues;
   }
 
   close() {
@@ -22,6 +22,14 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", this._handleFormSubmit);
+    this._popupForm.addEventListener("submit", this._handleSubmit);
   }
+
+  _handleSubmit = (e) => {
+    e.preventDefault();
+    this._handleFormSubmit(this._getInputValues());
+  };
+
+  //research "this", should be the class. use arrow function
+  // .bind(), .call(), .apply()
 }

@@ -129,11 +129,12 @@ function handleProfileEditSubmit(e) {
   editCardPopup.close();
 }
 
-function handleAddCardFormSubmit(e) {
-  e.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
+const handleAddCardFormSubmit = (inputValues) => {
+  // e.preventDefault();
+  // const name = cardTitleInput.value;
+  // const link = cardUrlInput.value;
+  const card = renderCard(inputValues);
+  section.additem(card);
   newCardPopup.close();
   addCardForm.reset();
   addFormValidator.toggleButtonState(
@@ -141,15 +142,15 @@ function handleAddCardFormSubmit(e) {
     cardFormSubmitButton,
     settings
   );
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                             // Event Listeners                             */
 /* -------------------------------------------------------------------------- */
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+// profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
-addCardForm.addEventListener("submit", handleAddCardFormSubmit);
+// addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
@@ -177,9 +178,8 @@ editCardPopup.setEventListeners();
 
 const newCardPopup = new PopupWithForm(
   "#add-card-popup",
-  handleAddCardFormSubmit();) => {
-    renderCard();
-  };
+  handleAddCardFormSubmit
+);
 newCardPopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
