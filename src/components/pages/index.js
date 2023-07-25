@@ -65,30 +65,6 @@ const section = new Section({
 section.renderItems();
 
 /* -------------------------------------------------------------------------- */
-/*                                // Functions                                */
-/* -------------------------------------------------------------------------- */
-
-// Event Handlers
-
-function handleProfileEditSubmit(inputValues) {
-  e.preventDefault();
-  profileTitle.textContent = input.name.value;
-  profileDescription.textContent = input.link.value;
-  editCardPopup.close();
-}
-
-const handleAddCardFormSubmit = (inputValues) => {
-  const card = renderCard(inputValues);
-  section.additem(card);
-  newCardPopup.close();
-  addFormValidator.toggleButtonState(
-    cardFormInputs,
-    cardFormSubmitButton,
-    settings
-  );
-};
-
-/* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
 /* -------------------------------------------------------------------------- */
 export const editFormValidator = new FormValidator(settings, editForm);
@@ -109,23 +85,48 @@ viewImagePopup.setEventListeners();
 /* ------------------------------------------------------------------------------- */
 
 //edit profile popup
-const editCardPopup = new PopupWithForm("#profile-edit-popup", () => {
-  editCardPopup.setEventListeners();
+const editProfilePopup = new PopupWithForm("#profile-edit-popup", () => {
+  handleProfileEditSubmit;
 });
 
+editProfilePopup.setEventListeners();
+
+profileEditButton.addEventListener("click", () => {
+  const user = UserInfo.getUserInfo();
+  userName.value = user.name;
+  userDescription.value = user.job;
+  editProfilePopup.open();
+  // profileTitleInput.value = profileTitle.textContent;
+  // profileDescriptionInput.value = profileDescription.textContent;
+  // editProfilePopup.open();
+  // handleProfileEditSubmit();
+});
+
+const handleProfileEditSubmit = (inputValues) => {
+  e.preventDefault();
+  profileTitle.textContent = input.name.value;
+  profileDescription.textContent = input.link.value;
+  editProfilePopup.close();
+};
+
 //add card popup
+
+const handleAddCardFormSubmit = (inputValues) => {
+  const card = renderCard(inputValues);
+  section.additem(card);
+  newCardPopup.close();
+  addFormValidator.toggleButtonState(
+    cardFormInputs,
+    cardFormSubmitButton,
+    settings
+  );
+};
 
 const newCardPopup = new PopupWithForm(
   "#add-card-popup",
   handleAddCardFormSubmit
 );
 newCardPopup.setEventListeners();
-
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  editCardPopup.open();
-});
 
 addCardButton.addEventListener("click", () => {
   newCardPopup.open();

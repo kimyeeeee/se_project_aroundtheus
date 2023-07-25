@@ -1,4 +1,4 @@
-const user = { name: "", job: "" };
+const user = { Name: "", Description: "" };
 export default class UserInfo {
   constructor(selectors) {
     this.userName = document.querySelector(selectors.userName);
@@ -8,12 +8,12 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this.userName.textContent,
-      job: this.userDescription.textContent,
+      description: this.userDescription.textContent,
     };
   }
 
   setUserInfo() {
     this.userName.textContent = user.name;
-    this.userDescription.textContent = user.job;
+    this.userDescription.textContent = user.description;
   }
 }

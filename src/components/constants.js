@@ -91,3 +91,5 @@ export const settings = {
 };
 export const editForm = document.querySelector("#edit-profile-form");
 export const addForm = document.querySelector("#add-card-form");
+
+//user info
