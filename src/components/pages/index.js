@@ -92,20 +92,20 @@ const editProfilePopup = new PopupWithForm("#profile-edit-popup", () => {
 editProfilePopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  const user = UserInfo.getUserInfo();
-  userName.value = user.name;
-  userDescription.value = user.job;
-  editProfilePopup.open();
-  // profileTitleInput.value = profileTitle.textContent;
-  // profileDescriptionInput.value = profileDescription.textContent;
+  // const user = UserInfo.getUserInfo();
+  // userName.value = user.name;
+  // userDescription.value = user.job;
   // editProfilePopup.open();
-  // handleProfileEditSubmit();
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  editProfilePopup.open();
+  handleProfileEditSubmit();
 });
 
 const handleProfileEditSubmit = (inputValues) => {
-  e.preventDefault();
-  profileTitle.textContent = input.name.value;
-  profileDescription.textContent = input.link.value;
+  // e.preventDefault();
+  profileTitle.textContent = inputValues.name.value;
+  profileDescription.textContent = inputValues.link.value;
   editProfilePopup.close();
 };
 
