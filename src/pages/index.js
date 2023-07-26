@@ -109,7 +109,6 @@ const handleAddCardFormSubmit = (inputValues) => {
   const card = renderCard(inputValues);
   section.addItem(card);
   newCardPopup.close();
-  addFormValidator.toggleButtonState();
 };
 
 const newCardPopup = new PopupWithForm(
@@ -119,8 +118,8 @@ const newCardPopup = new PopupWithForm(
 newCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
-  newCardPopup.open();
   addFormValidator.toggleButtonState();
+  newCardPopup.open();
 });
 
 /* ------------------------------------------------------------------------ */
