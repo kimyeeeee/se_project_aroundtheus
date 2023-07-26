@@ -91,3 +91,15 @@ export const settings = {
 };
 export const editForm = document.querySelector("#edit-profile-form");
 export const addForm = document.querySelector("#add-card-form");
+
+export const cardsConfig = {
+  containerSelector: ".cards__list",
+  cardTemplateSelector: "#card-template",
+};
+
+// const handleClosePopupWithEsc = (e) => {
+//     if (e.key === "Escape") {
+//       const openPopup = document.querySelector(".popup_opened");
+//       this.close(openPopup);
+//     }
+//   };
