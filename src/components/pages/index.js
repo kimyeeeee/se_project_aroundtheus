@@ -85,35 +85,30 @@ viewImagePopup.setEventListeners();
 /* ------------------------------------------------------------------------------- */
 
 //edit profile popup
-const editProfilePopup = new PopupWithForm("#profile-edit-popup", () => {
-  handleProfileEditSubmit;
-});
+const handleProfileEditSubmit = (inputValues) => {
+  userInfo.setUserInfo(inputValues.name, inputValues.about);
+
+  editProfilePopup.close();
+};
+const editProfilePopup = new PopupWithForm(
+  "#profile-edit-popup",
+  handleProfileEditSubmit
+);
 
 editProfilePopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  // const user = UserInfo.getUserInfo();
-  // userName.value = user.name;
-  // userDescription.value = user.job;
-  // editProfilePopup.open();
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  const updatedUserInfo = userInfo.getUserInfo();
+  profileTitleInput.value = updatedUserInfo.name;
+  profileDescriptionInput.value = updatedUserInfo.about;
   editProfilePopup.open();
-  handleProfileEditSubmit();
 });
-
-const handleProfileEditSubmit = (inputValues) => {
-  // e.preventDefault();
-  profileTitle.textContent = inputValues.name.value;
-  profileDescription.textContent = inputValues.link.value;
-  editProfilePopup.close();
-};
 
 //add card popup
 
 const handleAddCardFormSubmit = (inputValues) => {
   const card = renderCard(inputValues);
-  section.additem(card);
+  section.addItem(card);
   newCardPopup.close();
   addFormValidator.toggleButtonState(
     cardFormInputs,
