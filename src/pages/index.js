@@ -34,6 +34,7 @@ import {
   editForm,
   addForm,
 } from "../utils/constants.js";
+import Api from "../components/Api.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Cards                                     */
@@ -129,3 +130,19 @@ const userInfo = new UserInfo({
   userName: ".profile__title",
   userDescription: ".profile__description",
 });
+
+/* -------------------------------------------------------------------------- */
+/*                                     API                                    */
+/* -------------------------------------------------------------------------- */
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "63bd0a97-87e8-4761-93e7-bc9458ee6ee5",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getUserInfo();
+
+api.getInitialCards().then((res) => console.log(res));
