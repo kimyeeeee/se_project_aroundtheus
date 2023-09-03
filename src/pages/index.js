@@ -145,4 +145,4 @@ const api = new Api({
 
 api.getUserInfo();
 
-api.getInitialCards().then((res) => console.log(res));
+api.getInitialCards();

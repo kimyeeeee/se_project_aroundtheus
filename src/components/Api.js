@@ -5,7 +5,7 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1", {
+    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
       headers: {
         authorization: "63bd0a97-87e8-4761-93e7-bc9458ee6ee5",
       },
@@ -30,7 +30,7 @@ export default class Api {
   }
 
   getUserInfo() {
-    fetch(`${this.baseUrl}/users/me`, {
+    fetch(`${this._baseUrl}/users/me`, {
       haeders: this._headers,
     }).then(this._handleResponse);
   }
