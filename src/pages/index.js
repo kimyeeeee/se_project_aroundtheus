@@ -55,15 +55,6 @@ function renderCard(cardData) {
   return card.getView();
 }
 
-const section = new Section({
-  items: initialCards,
-  renderer: (cardData) => {
-    const card = renderCard(cardData);
-    section.addItem(card);
-  },
-});
-section.renderItems();
-
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
 /* -------------------------------------------------------------------------- */
@@ -144,5 +135,18 @@ const api = new Api({
 });
 
 api.getUserInfo();
+let section;
+api.getInitialCards().then((cards) => {
+  section = new Section({
+    items: cards,
+    renderer: (cardData) => {
+      const card = renderCard(cardData);
+      section.addItem(card);
+    },
+  });
+  section.renderItems();
 
-api.getInitialCards();
+  api.editProfile();
+
+  api.addNewCard();
+});
