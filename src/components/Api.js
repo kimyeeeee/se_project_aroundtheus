@@ -43,7 +43,7 @@ export default class Api {
 
   addNewCard() {
     return fetch("https://around-api.en.tripleten-services.com/v1/cards ", {
-      method: "PATCH",
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: this._name,

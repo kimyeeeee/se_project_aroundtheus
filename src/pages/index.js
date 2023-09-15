@@ -101,6 +101,7 @@ const handleAddCardFormSubmit = (inputValues) => {
   const card = renderCard(inputValues);
   section.addItem(card);
   newCardPopup.close();
+  api.addNewCard(this._name, this._link);
 };
 
 const newCardPopup = new PopupWithForm(
@@ -125,7 +126,6 @@ const userInfo = new UserInfo({
 /* -------------------------------------------------------------------------- */
 /*                                     API                                    */
 /* -------------------------------------------------------------------------- */
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -146,7 +146,5 @@ api.getInitialCards().then((cards) => {
   });
   section.renderItems();
 
-  api.editProfile();
-
-  api.addNewCard();
+  // api.editProfile();
 });
