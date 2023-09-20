@@ -41,13 +41,24 @@ export default class Api {
     });
   }
 
-  addNewCard() {
+  addNewCard({ name, link }) {
     return fetch("https://around-api.en.tripleten-services.com/v1/cards ", {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: this._name,
-        link: this._link,
+        name,
+        link,
+      }),
+    });
+  }
+
+  deleteCard({ name, link }) {
+    return fetch("https://around-api.en.tripleten-services.com/v1/cards ", {
+      method: "DELETE",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
       }),
     });
   }

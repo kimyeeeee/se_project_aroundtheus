@@ -49,10 +49,30 @@ const cardData = {
 };
 
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", (name, link) => {
-    viewImagePopup.open({ name, link });
+  // const card = new Card(cardData, "#card-template", (name, link) => {
+  //   viewImagePopup.open({ name, link });
+  // });
+  const card = new Card({
+    cardData,
+    cardSelector: "#card-template",
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick,
   });
+
   return card.getView();
+}
+
+function handleCardClick(name, link) {
+  viewImagePopup.open({ name, link });
+}
+
+function handleDeleteClick() {
+  deleteCard();
+}
+
+function handleLikeClick() {
+  this._handleLikeIcon();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -101,7 +121,7 @@ const handleAddCardFormSubmit = (inputValues) => {
   const card = renderCard(inputValues);
   section.addItem(card);
   newCardPopup.close();
-  api.addNewCard(this._name, this._link);
+  api.addNewCard(inputValues);
 };
 
 const newCardPopup = new PopupWithForm(

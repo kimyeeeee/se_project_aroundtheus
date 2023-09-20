@@ -1,9 +1,22 @@
+import Popup from "./Popup.js";
+import { popupSaveButton } from "../utils/constants.js";
+import Api from "./Api.js";
+
 export default class Card {
-  constructor({ name, link }, cardSelector, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  // constructor({ name, link }, cardSelector, handleCardClick) {
+  constructor({
+    cardData,
+    cardSelector,
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick,
+  }) {
+    this._name = cardData.name;
+    this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -25,7 +38,14 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._handleDeleteCard();
+        const deleteCardPopup = document.querySelector("#delete-card-popup");
+        deleteCardPopup.classList.add("popup_opened");
+        // 1) delete card from the DOM; 2) send the request to delete the card
+        // this._cardElement.remove();
+        popupSaveButton.addEventListener("submit", () => {
+          this._caardElement.remove();
+        });
+        Api.deleteCard();
       });
 
     this._cardImageEl.addEventListener("click", () => {

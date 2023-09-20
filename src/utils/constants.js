@@ -39,6 +39,7 @@ export const viewCardImagePopup = document.querySelector("#view-image-popup");
 /* -------------------------------------------------------------------------- */
 /*                       // Buttons and other DOM nodes                       */
 /* -------------------------------------------------------------------------- */
+
 export const profileEditButton = document.querySelector("#profile-edit-button");
 export const profileCloseButton = profileEditPopup.querySelector(
   "#editprofile-close-button"
@@ -62,6 +63,7 @@ export const viewCardImageCaption = document.querySelector(
 export const viewCardCloseButton = viewCardImagePopup.querySelector(
   "#viewimage-close-button"
 );
+export const popupSaveButton = document.querySelector(".popup__save-button");
 
 /* -------------------------------------------------------------------------- */
 /*                                // Form Data                                */
