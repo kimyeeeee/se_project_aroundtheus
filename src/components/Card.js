@@ -13,6 +13,7 @@ export default class Card {
   }) {
     this._name = cardData.name;
     this._link = cardData.link;
+    this._id = cardData._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -38,14 +39,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        const deleteCardPopup = document.querySelector("#delete-card-popup");
-        deleteCardPopup.classList.add("popup_opened");
-        // 1) delete card from the DOM; 2) send the request to delete the card
-        // this._cardElement.remove();
-        popupSaveButton.addEventListener("submit", () => {
-          this._caardElement.remove();
-        });
-        Api.deleteCard();
+        this._handleDeleteClick(this);
       });
 
     this._cardImageEl.addEventListener("click", () => {
@@ -59,9 +53,9 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  _handleDeleteCard() {
-    this._cardElement.remove();
-  }
+  // _handleDeleteCard() {
+  //   this._cardElement.remove();
+  // }
 
   _handleViewCardImage() {
     this._cardImageEl.src = this._link;

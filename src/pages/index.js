@@ -35,6 +35,7 @@ import {
   addForm,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Cards                                     */
@@ -67,8 +68,19 @@ function handleCardClick(name, link) {
   viewImagePopup.open({ name, link });
 }
 
-function handleDeleteClick() {
-  deleteCard();
+//create instance of PopupwithConfimr
+//set event listeners
+const deleteCardConfirmation = new PopupWithConfirmation("#delete-card-popup");
+
+function handleDeleteClick(card) {
+  //open the popupwithconfirm
+  //set the submit action
+  deleteCardConfirmation.open();
+  deleteCardConfirmation.setSubmitAction(() => {
+    // handle the deletion card
+    api.deleteCard(this._id);
+  });
+  deleteCardConfirmation.setEventListeners();
 }
 
 function handleLikeClick() {
