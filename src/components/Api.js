@@ -52,15 +52,11 @@ export default class Api {
     });
   }
 
-  deleteCard({ name, link, id }) {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards ", {
-      method: "DELETE",
+  deleteCard() {
+    return fetch("https://around-api.en.tripleten-services.com/v1/cards/:id ", {
+      method: "DELETE/cards/:id",
       headers: this._headers,
-      body: JSON.stringify({
-        name,
-        link,
-        id,
-      }),
+      body: JSON.stringify(this._id),
     });
   }
 }
