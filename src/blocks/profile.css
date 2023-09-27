@@ -63,6 +63,12 @@
   white-space: nowrap;
   overflow: hidden;
 }
+.profile__pic-container {
+  position: relative;
+
+  /* max-width: 120px;
+  max-height: 120px; */
+}
 .profile__pic {
   height: 120px;
   width: 120px;
@@ -70,6 +76,23 @@
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
+}
+.profile__pic-edit-button {
+  position: absolute;
+  background: transparent url(../images/pencil.svg) center no-repeat;
+  height: 26px;
+  width: 26px;
+  border: none;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transition: opacity 0.15s;
+}
+
+.profile__pic-edit-button:hover {
+  cursor: pointer;
+  z-index: 2;
+  opacity: 1;
 }
 
 @media screen and (max-width: 544px) {

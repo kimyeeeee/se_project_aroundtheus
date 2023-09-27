@@ -59,6 +59,7 @@ function renderCard(cardData) {
     handleCardClick,
     handleDeleteClick,
     handleLikeClick,
+    handleDeleteClick,
   });
 
   return card.getView();
@@ -67,26 +68,35 @@ function renderCard(cardData) {
 function handleCardClick(name, link) {
   viewImagePopup.open({ name, link });
 }
+/* ------------------------ delete card confirmation ------------------------ */
 
-//create instance of PopupwithConfimr
-//set event listeners
 const deleteCardConfirmation = new PopupWithConfirmation("#delete-card-popup");
 
 function handleDeleteClick(card) {
-  //open the popupwithconfirm
-  //set the submit action
   deleteCardConfirmation.open();
   deleteCardConfirmation.setSubmitAction(() => {
-    // handle the deletion card
-    api.deleteCard(this._id);
+    const id = this.getId();
+    api.deleteCard(id).then(() => {
+      deleteCardConfirmation.close();
+      this.handleDeleteCard();
+    });
   });
   deleteCardConfirmation.setEventListeners();
 }
+/* ------------------------------- like button ------------------------------ */
 
-function handleLikeClick() {
-  this._handleLikeIcon();
+function handleLikeClick(id) {
+  // this._handleLikeIcon();
+  api.addingLike(id).then(() => {
+    this.handleLikeIcon();
+  });
 }
 
+// function deleteLikeClick(id) {
+//   api.deleteLikeClick(id).then(()=> {
+//     this.handleLikeIcon();
+//   });
+// }
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
 /* -------------------------------------------------------------------------- */
@@ -127,7 +137,7 @@ profileEditButton.addEventListener("click", () => {
   editProfilePopup.open();
 });
 
-//add card popup
+/* ---------------------------- add card popup ---------------------------- */
 
 const handleAddCardFormSubmit = (inputValues) => {
   const card = renderCard(inputValues);
@@ -153,6 +163,7 @@ addCardButton.addEventListener("click", () => {
 const userInfo = new UserInfo({
   userName: ".profile__title",
   userDescription: ".profile__description",
+  userPicture: ".profile__pic",
 });
 
 /* -------------------------------------------------------------------------- */

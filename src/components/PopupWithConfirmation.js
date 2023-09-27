@@ -11,19 +11,9 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   close() {
-    this._popupSaveButton.removeEventListener();
+    this._popupSaveButton.removeEventListener("click", this._handleFormSubmit);
     super.close();
   }
-
-  //   _handleDelteCard() {
-  //     const deleteCardPopup = document.querySelector("#delete-card-popup");
-  //     deleteCardPopup.classList.add("popup_opened");
-  //     // 1) delete card from the DOM; 2) send the request to delete the card
-
-  //     popupSaveButton.addEventListener("submit", () => {
-  //       this._cardElement.remove();
-  //     });
-  //   }
 
   setSubmitAction(fn) {
     this._handleFormSubmit = fn;
@@ -34,5 +24,3 @@ export default class PopupWithConfirmation extends Popup {
     this._popupSaveButton.addEventListener("click", this._handleFormSubmit);
   }
 }
-
-//bring back close but remove event listener instead of resetting it.

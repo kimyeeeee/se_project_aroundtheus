@@ -64,6 +64,7 @@ export const viewCardCloseButton = viewCardImagePopup.querySelector(
   "#viewimage-close-button"
 );
 export const popupSaveButton = document.querySelector(".popup__save-button");
+export const editProfilePicButton = document.querySelector(".profile__pic-edit-button");
 
 /* -------------------------------------------------------------------------- */
 /*                                // Form Data                                */

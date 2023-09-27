@@ -1,8 +1,9 @@
 const user = { Name: "", Description: "" };
 export default class UserInfo {
-  constructor(selectors) {
+  constructor({ userName, userDescription, userPicture }) {
     this.userName = document.querySelector(selectors.userName);
     this.userDescription = document.querySelector(selectors.userDescription);
+    this.userPicture = document.querySelector(selectors.userPicture);
   }
 
   getUserInfo() {
@@ -15,5 +16,9 @@ export default class UserInfo {
   setUserInfo(name, description) {
     this.userName.textContent = name;
     this.userDescription.textContent = description;
+  }
+
+  setAvatar(avatar) {
+    this._userAvatar.src = avatar;
   }
 }

@@ -18,11 +18,19 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__pic"
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="jacques cousteau profile pic"
-          />
+          <div class="profile__pic-container">
+            <img
+              class="profile__pic"
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="jacques cousteau profile pic"
+            />
+            <button 
+            class="profile__pic-edit-button"
+            aria-label="profile edit button"
+            type="button"
+            id="profile-pic-edit-button"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
