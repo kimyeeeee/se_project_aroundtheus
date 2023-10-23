@@ -7,6 +7,7 @@ export default class Card {
   constructor({
     cardData,
     cardSelector,
+    isLiked,
     handleCardClick,
     handleDeleteClick,
     handleLikeClick,
@@ -14,6 +15,7 @@ export default class Card {
     this._name = cardData.name;
     this._link = cardData.link;
     this._id = cardData._id;
+    this._isLiked = cardData.isLiked;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -36,7 +38,6 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        // this._handleLikeIcon();
         this._handleLikeClick(this._id);
       });
 
@@ -80,4 +81,8 @@ export default class Card {
 
     return this._cardElement;
   }
+
+  // isLiked() {
+  //   return this._isLiked;
+  // }
 }

@@ -4,10 +4,10 @@ import Popup from "./Popup";
 export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    // this._popupForm = this._popupElement.querySelector(".popup__form");
     this._popupSaveButton = this._popupElement.querySelector(
       ".popup__save-button"
     );
+    this._popupSaveButtonText = this._popupSaveButton.textContent;
   }
 
   close() {
@@ -22,5 +22,13 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._popupSaveButton.addEventListener("click", this._handleFormSubmit);
+  }
+
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._popupSaveButtonText.textContent = loadingText;
+    } else {
+      this._popupSaveButtonText.textContent = defaultText;
+    }
   }
 }

@@ -33,6 +33,7 @@ import {
   settings,
   editForm,
   addForm,
+  editProfilePicButton,
 } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation";
@@ -86,17 +87,15 @@ function handleDeleteClick(card) {
 /* ------------------------------- like button ------------------------------ */
 
 function handleLikeClick(id) {
-  // this._handleLikeIcon();
-  api.addingLike(id).then(() => {
+  if (this._isLiked) {
+    api.addingLike(id).then(() => {
+      this.handleLikeIcon();
+    });
+  } else {
     this.handleLikeIcon();
-  });
+  }
 }
 
-// function deleteLikeClick(id) {
-//   api.deleteLikeClick(id).then(()=> {
-//     this.handleLikeIcon();
-//   });
-// }
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
 /* -------------------------------------------------------------------------- */
@@ -191,3 +190,35 @@ api.getInitialCards().then((cards) => {
 
   // api.editProfile();
 });
+
+/* ------------------------- update profile picture popup ------------------------- */
+
+const handleEditProfileFormSubmit = (avatar) => {
+  editProfilePicPopup.renderLoading(true, "Saving...");
+  api
+    .updateProfilePicture(avatar.link)
+    .then((response) => {
+      userInfo.setAvatar(avatar.link);
+      editProfilePicPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      editProfilePicPopup.renderLoading(false);
+    });
+};
+
+const editProfilePicPopup = new PopupWithForm(
+  "#edit-profile-pic-popup",
+  handleEditProfileFormSubmit
+);
+
+editProfilePicPopup.setEventListeners();
+
+editProfilePicButton.addEventListener("click", () => {
+  editProfilePicPopup.open();
+});
+
+//saving...
+//change text to saving before promise and then use a .then for after promise

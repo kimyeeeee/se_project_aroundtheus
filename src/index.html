@@ -149,7 +149,29 @@
         </form>
   </div>
 </section>
+<!-- edit profile pic popup -->
+<section class="popup" id="edit-profile-pic-popup">
+<div class="popup__container">
+  <button
+          class="popup__close-button"
+          id="viewimage-close-button"
+          type="button"
+        ></button>
+<h2 class="popup__heading">Change Profile Picture</h2>
+<form class="popup__form" id="edit-profile-pic-form" novalidate>
+  <input 
+  type="url"
+  class="popup__input popup__input_type_url"
+  placeholder="Image Link"
+  id="profile-pic-link"
+  name="link"
+  required>
+  <button class="popup__save-button" type="submit">Yes</button>
+</form>
+</div>
 
+
+</section>
     <!-- card template-->
     <template id="card-template">
       <li class="card">
