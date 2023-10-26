@@ -74,25 +74,43 @@ function handleCardClick(name, link) {
 const deleteCardConfirmation = new PopupWithConfirmation("#delete-card-popup");
 
 function handleDeleteClick(card) {
+  deleteCardConfirmation.renderLoading(true, "Saving...");
   deleteCardConfirmation.open();
   deleteCardConfirmation.setSubmitAction(() => {
-    const id = this.getId();
-    api.deleteCard(id).then(() => {
-      deleteCardConfirmation.close();
-      this.handleDeleteCard();
-    });
+    const id = card.getId();
+    api
+      .deleteCard(id)
+      .then(() => {
+        deleteCardConfirmation.close();
+        card.deleteCard();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   });
-  deleteCardConfirmation.setEventListeners();
 }
+deleteCardConfirmation.setEventListeners();
 /* ------------------------------- like button ------------------------------ */
 
-function handleLikeClick(id) {
-  if (this._isLiked) {
-    api.addingLike(id).then(() => {
-      this.handleLikeIcon();
-    });
+function handleLikeClick(card) {
+  if (card.isLiked()) {
+    api
+      .deleteLike(card.getID())
+      .then(() => {
+        card.handleLikeIcon();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   } else {
-    this.handleLikeIcon();
+    api
+      .addLike(card.getId())
+      .then(() => {
+        card.handleLikeIcon();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
 
@@ -176,20 +194,22 @@ const api = new Api({
   },
 });
 
-api.getUserInfo();
 let section;
-api.getInitialCards().then((cards) => {
-  section = new Section({
-    items: cards,
-    renderer: (cardData) => {
-      const card = renderCard(cardData);
-      section.addItem(card);
-    },
+api
+  .getInitialCards()
+  .then((cards) => {
+    section = new Section({
+      items: cards,
+      renderer: (cardData) => {
+        const card = renderCard(cardData);
+        section.addItem(card);
+      },
+    });
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
   });
-  section.renderItems();
-
-  // api.editProfile();
-});
 
 /* ------------------------- update profile picture popup ------------------------- */
 
@@ -219,6 +239,3 @@ editProfilePicPopup.setEventListeners();
 editProfilePicButton.addEventListener("click", () => {
   editProfilePicPopup.open();
 });
-
-//saving...
-//change text to saving before promise and then use a .then for after promise

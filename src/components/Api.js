@@ -16,23 +16,19 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleResponse);
   }
 
   getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then(this._handleResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._handleResponse);
   }
 
   editProfile() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -43,7 +39,7 @@ export default class Api {
   }
 
   addNewCard({ name, link }) {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -54,35 +50,33 @@ export default class Api {
   }
 
   deleteCard(id) {
-    return fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${id}`,
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    ).then(this._handleResponse);
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._handleResponse);
   }
 
-  addingLike(id) {
-    return fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${id}/likes`,
-      {
-        method: "PUT",
-        headers: this._headers,
-      }
-    ).then(this._handleResponse);
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
+
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._handleResponse);
   }
 
   updateProfilePicture(avatar) {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
-      {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({
-          avatar,
-        }),
-      }
-    ).then(this._handleResponse);
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then(this._handleResponse);
   }
 }
