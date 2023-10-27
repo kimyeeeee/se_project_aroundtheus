@@ -157,10 +157,11 @@ profileEditButton.addEventListener("click", () => {
 /* ---------------------------- add card popup ---------------------------- */
 
 const handleAddCardFormSubmit = (inputValues) => {
-  const card = renderCard(inputValues);
-  section.addItem(card);
-  newCardPopup.close();
-  api.addNewCard(inputValues);
+  api.addNewCard(inputValues).then(() => {
+    const card = renderCard(inputValues);
+    section.addItem(card);
+    newCardPopup.close();
+  }).catch;
 };
 
 const newCardPopup = new PopupWithForm(
@@ -182,7 +183,6 @@ const userInfo = new UserInfo({
   userDescription: ".profile__description",
   userPicture: ".profile__pic",
 });
-
 /* -------------------------------------------------------------------------- */
 /*                                     API                                    */
 /* -------------------------------------------------------------------------- */
@@ -194,6 +194,9 @@ const api = new Api({
   },
 });
 
+api.getUserInfo().then((res) => {
+  userInfo.setUserInfo(res.name, res.about);
+});
 let section;
 api
   .getInitialCards()
