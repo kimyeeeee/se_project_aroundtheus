@@ -74,18 +74,21 @@ function handleCardClick(name, link) {
 const deleteCardConfirmation = new PopupWithConfirmation("#delete-card-popup");
 
 function handleDeleteClick(card) {
-  deleteCardConfirmation.renderLoading(true, "Saving...");
   deleteCardConfirmation.open();
   deleteCardConfirmation.setSubmitAction(() => {
     const id = card.getId();
     api
       .deleteCard(id)
       .then(() => {
+        deleteCardConfirmation.renderLoading(true, "Saving...");
         deleteCardConfirmation.close();
         card.deleteCard();
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        deleteCardConfirmation.renderLoading(false);
       });
   });
 }
@@ -136,9 +139,19 @@ viewImagePopup.setEventListeners();
 
 //edit profile popup
 const handleProfileEditSubmit = (inputValues) => {
-  userInfo.setUserInfo(inputValues.name, inputValues.about);
-
-  editProfilePopup.close();
+  editProfilePopup.renderLoading(true, "Saving...");
+  api
+    .editProfile(inputValues)
+    .then(() => {
+      userInfo.setUserInfo(inputValues.name, inputValues.about);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
 };
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-popup",
@@ -157,11 +170,20 @@ profileEditButton.addEventListener("click", () => {
 /* ---------------------------- add card popup ---------------------------- */
 
 const handleAddCardFormSubmit = (inputValues) => {
-  api.addNewCard(inputValues).then(() => {
-    const card = renderCard(inputValues);
-    section.addItem(card);
-    newCardPopup.close();
-  }).catch;
+  newCardPopup.renderLoading(true, "Saving...");
+  api
+    .addNewCard(inputValues)
+    .then(() => {
+      const card = renderCard(inputValues);
+      section.addItem(card);
+      newCardPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      newCardPopup.renderLoading(false);
+    });
 };
 
 const newCardPopup = new PopupWithForm(
