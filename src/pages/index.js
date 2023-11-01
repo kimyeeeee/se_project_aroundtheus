@@ -77,10 +77,11 @@ function handleDeleteClick(card) {
   deleteCardConfirmation.open();
   deleteCardConfirmation.setSubmitAction(() => {
     const id = card.getId();
+    deleteCardConfirmation.renderLoading(true, "Saving...");
     api
       .deleteCard(id)
       .then(() => {
-        deleteCardConfirmation.renderLoading(true, "Saving...");
+        // deleteCardConfirmation.renderLoading(true, "Saving...");
         deleteCardConfirmation.close();
         card.deleteCard();
       })
