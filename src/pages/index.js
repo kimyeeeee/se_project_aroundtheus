@@ -76,14 +76,13 @@ const deleteCardConfirmation = new PopupWithConfirmation("#delete-card-popup");
 function handleDeleteClick(card) {
   deleteCardConfirmation.open();
   deleteCardConfirmation.setSubmitAction(() => {
-    const id = card.getId();
     deleteCardConfirmation.renderLoading(true, "Saving...");
+    const id = card.getId();
     api
       .deleteCard(id)
       .then(() => {
-        // deleteCardConfirmation.renderLoading(true, "Saving...");
-        deleteCardConfirmation.close();
         card.deleteCard();
+        deleteCardConfirmation.close();
       })
       .catch((err) => {
         console.error(err);
@@ -99,19 +98,15 @@ deleteCardConfirmation.setEventListeners();
 function handleLikeClick(card) {
   if (card.isLiked()) {
     api
-      .deleteLike(card.getID())
-      .then(() => {
-        card.handleLikeIcon();
-      })
+      .deleteLike(card.getId())
+      .then((cardData) => card.setIsLiked(cardData.isLiked))
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
       .addLike(card.getId())
-      .then(() => {
-        card.handleLikeIcon();
-      })
+      .then((cardData) => card.setIsLiked(cardData.isLiked))
       .catch((err) => {
         console.error(err);
       });
@@ -203,7 +198,7 @@ addCardButton.addEventListener("click", () => {
 /* ------------------------------------------------------------------------ */
 const userInfo = new UserInfo({
   userName: ".profile__title",
-  userDescription: ".profile__description",
+  userAbout: ".profile__description",
   userPicture: ".profile__pic",
 });
 /* -------------------------------------------------------------------------- */
@@ -219,6 +214,7 @@ const api = new Api({
 
 api.getUserInfo().then((res) => {
   userInfo.setUserInfo(res.name, res.about);
+  userInfo.setAvatar(res.avatar);
 });
 let section;
 api

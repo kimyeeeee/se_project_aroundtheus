@@ -8,10 +8,12 @@ export default class PopupWithConfirmation extends Popup {
       ".popup__save-button"
     );
     this._popupSaveButtonText = this._popupSaveButton.textContent;
+    // this._handleFormSubmit = _handleFormSubmit;
+    this._popupForm = this._popupElement.querySelector(".popup__form");
   }
 
   close() {
-    this._popupSaveButton.removeEventListener("click", this._handleFormSubmit);
+    // this._popupSaveButton.removeEventListener("click", this._handleFormSubmit);
     super.close();
   }
 
@@ -20,8 +22,12 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   setEventListeners() {
+    // this._popupSaveButton.addEventListener("submit", this.setSubmitAction);
     super.setEventListeners();
-    this._popupSaveButton.addEventListener("click", this._handleFormSubmit);
+    this._popupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this._handleFormSubmit();
+    });
   }
 
   renderLoading(isLoading, loadingText = "Saving...") {

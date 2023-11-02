@@ -1,21 +1,21 @@
-const user = { Name: "", Description: "" };
+// const user = { Name: "", About: "" };
 export default class UserInfo {
-  constructor({ userName, userDescription, userPicture }) {
+  constructor({ userName, userAbout, userPicture }) {
     this.userName = document.querySelector(userName);
-    this.userDescription = document.querySelector(userDescription);
+    this.userAbout = document.querySelector(userAbout);
     this.userPicture = document.querySelector(userPicture);
   }
 
   getUserInfo() {
     return {
       name: this.userName.textContent,
-      description: this.userDescription.textContent,
+      description: this.userAbout.textContent,
     };
   }
 
-  setUserInfo(name, description) {
+  setUserInfo(name, about) {
     this.userName.textContent = name;
-    this.userDescription.textContent = description;
+    this.userAbout.textContent = about;
   }
 
   setAvatar(avatar) {

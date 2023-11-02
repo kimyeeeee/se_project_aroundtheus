@@ -76,6 +76,7 @@ export default class Card {
 
   deleteCard() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   _handleViewCardImage() {
