@@ -64,7 +64,9 @@ export const viewCardCloseButton = viewCardImagePopup.querySelector(
   "#viewimage-close-button"
 );
 export const popupSaveButton = document.querySelector(".popup__save-button");
-export const editProfilePicButton = document.querySelector(".profile__pic-edit-button");
+export const editProfilePicButton = document.querySelector(
+  ".profile__pic-edit-button"
+);
 
 /* -------------------------------------------------------------------------- */
 /*                                // Form Data                                */
@@ -94,6 +96,9 @@ export const settings = {
 };
 export const editForm = document.querySelector("#edit-profile-form");
 export const addForm = document.querySelector("#add-card-form");
+export const editProfilePicForm = document.querySelector(
+  "#edit-profile-pic-form"
+);
 
 export const cardsConfig = {
   containerSelector: ".cards__list",

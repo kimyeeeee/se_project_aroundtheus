@@ -8,7 +8,6 @@ export default class PopupWithConfirmation extends Popup {
       ".popup__save-button"
     );
     this._popupSaveButtonText = this._popupSaveButton.textContent;
-    // this._handleFormSubmit = _handleFormSubmit;
     this._popupForm = this._popupElement.querySelector(".popup__form");
   }
 
@@ -30,11 +29,11 @@ export default class PopupWithConfirmation extends Popup {
     });
   }
 
-  renderLoading(isLoading, loadingText = "Saving...") {
-    if (isLoading) {
-      this._popupSaveButton.textContent = loadingText;
-    } else {
-      this._popupSaveButton.textContent = this._popupSaveButtonText;
-    }
-  }
+  // renderLoading(isLoading, loadingText = "Saving...") {
+  //   if (isLoading) {
+  //     this._popupSaveButton.textContent = loadingText;
+  //   } else {
+  //     this._popupSaveButton.textContent = this._popupSaveButtonText;
+  //   }
+  // }
 }

@@ -32,6 +32,7 @@ import {
   cardFormSubmitButton,
   settings,
   editForm,
+  editProfilePicForm,
   addForm,
   editProfilePicButton,
 } from "../utils/constants.js";
@@ -118,9 +119,14 @@ function handleLikeClick(card) {
 /* -------------------------------------------------------------------------- */
 export const editFormValidator = new FormValidator(settings, editForm);
 export const addFormValidator = new FormValidator(settings, addForm);
+export const editProfilePicValidator = new FormValidator(
+  settings,
+  editProfilePicForm
+);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+editProfilePicValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
 /*                               PopupWithImage                               */
@@ -169,8 +175,8 @@ const handleAddCardFormSubmit = (inputValues) => {
   newCardPopup.renderLoading(true, "Saving...");
   api
     .addNewCard(inputValues)
-    .then(() => {
-      const card = renderCard(inputValues);
+    .then((res) => {
+      const card = renderCard(res);
       section.addItem(card);
       newCardPopup.close();
     })

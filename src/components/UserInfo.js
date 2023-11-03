@@ -9,7 +9,7 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this.userName.textContent,
-      description: this.userAbout.textContent,
+      about: this.userAbout.textContent,
     };
   }
 
