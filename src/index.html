@@ -18,11 +18,19 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__pic"
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="jacques cousteau profile pic"
-          />
+          <div class="profile__pic-container">
+            <img
+              class="profile__pic"
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="jacques cousteau profile pic"
+            />
+            <button
+              class="profile__pic-edit-button"
+              aria-label="profile edit button"
+              type="button"
+              id="profile-pic-edit-button"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -125,6 +133,44 @@
         ></button>
         <img src="#" alt="#" class="popup__image-view" id="popup-image-view" />
         <p class="popup__image-caption"></p>
+      </div>
+    </section>
+
+    <!--   delete card popup  -->
+    <section class="popup" id="delete-card-popup">
+      <div class="popup__container">
+        <button
+          class="popup__close-button"
+          id="delete-card-close-button"
+          type="button"
+        ></button>
+        <h2 class="popup__heading">Are you sure?</h2>
+        <form class="popup__form">
+          <button class="popup__save-button" type="submit">Yes</button>
+        </form>
+      </div>
+    </section>
+    <!-- edit profile pic popup -->
+    <section class="popup" id="edit-profile-pic-popup">
+      <div class="popup__container">
+        <button
+          class="popup__close-button"
+          id="viewimage-close-button"
+          type="button"
+        ></button>
+        <h2 class="popup__heading">Change Profile Picture</h2>
+        <form class="popup__form" id="edit-profile-pic-form" novalidate>
+          <input
+            type="url"
+            class="popup__input popup__input_type_url"
+            placeholder="Image Link"
+            id="profile-pic-link"
+            name="link"
+            required
+          />
+          <span class="popup__error" id="profile-pic-link-error"></span>
+          <button class="popup__save-button" type="submit">Yes</button>
+        </form>
       </div>
     </section>
     <!-- card template-->

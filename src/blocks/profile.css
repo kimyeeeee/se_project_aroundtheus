@@ -63,13 +63,42 @@
   white-space: nowrap;
   overflow: hidden;
 }
+.profile__pic-container {
+  position: relative;
+  margin-right: 24px;
+  /* max-width: 120px;
+  max-height: 120px; */
+}
+.profile__pic-container:hover .profile__pic {
+  opacity: 0.4;
+}
+
+.profile__pic-container:hover .profile__pic-edit-button {
+  cursor: pointer;
+  z-index: 2;
+  opacity: 1;
+}
+
 .profile__pic {
   height: 120px;
   width: 120px;
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
-  margin-right: 24px;
+}
+
+.profile__pic-edit-button {
+  position: absolute;
+  background: transparent url(../images/editProfilePencil.svg) center no-repeat;
+  height: 26px;
+  width: 26px;
+  border: none;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0px 0px 0px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 544px) {

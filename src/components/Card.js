@@ -1,9 +1,29 @@
+import Popup from "./Popup.js";
+import { popupSaveButton } from "../utils/constants.js";
+import Api from "./Api.js";
+
 export default class Card {
-  constructor({ name, link }, cardSelector, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  // constructor({ name, link }, cardSelector, handleCardClick) {
+  constructor({
+    cardData,
+    cardSelector,
+    isLiked,
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick,
+  }) {
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this._id = cardData._id;
+    this._isLiked = cardData.isLiked;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
+  }
+
+  getId() {
+    return this._id;
   }
 
   _getTemplate() {
@@ -18,14 +38,14 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._handleLikeIcon();
+        this._handleLikeClick(this);
       });
 
     //".card__delete-button"
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._handleDeleteCard();
+        this._handleDeleteClick(this);
       });
 
     this._cardImageEl.addEventListener("click", () => {
@@ -33,14 +53,30 @@ export default class Card {
     });
   }
 
-  _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+  setIsLiked(isLiked) {
+    this._isLiked = isLiked;
+    this._renderLikes();
   }
 
-  _handleDeleteCard() {
+  isLiked() {
+    return this._isLiked;
+  }
+
+  _renderLikes() {
+    if (this._isLiked) {
+      this._cardElement
+        .querySelector(".card__like-button")
+        .classList.add("card__like-button_active");
+    } else {
+      this._cardElement
+        .querySelector(".card__like-button")
+        .classList.remove("card__like-button_active");
+    }
+  }
+
+  deleteCard() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   _handleViewCardImage() {
@@ -54,6 +90,7 @@ export default class Card {
 
     this._cardImageEl = this._cardElement.querySelector(".card__image");
     this._cardTitleEl = this._cardElement.querySelector(".card__title");
+    this._renderLikes();
 
     this._handleViewCardImage();
 

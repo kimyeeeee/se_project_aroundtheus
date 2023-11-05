@@ -32,8 +32,12 @@ import {
   cardFormSubmitButton,
   settings,
   editForm,
+  editProfilePicForm,
   addForm,
+  editProfilePicButton,
 } from "../utils/constants.js";
+import Api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Cards                                     */
@@ -48,29 +52,81 @@ const cardData = {
 };
 
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", (name, link) => {
-    viewImagePopup.open({ name, link });
+  // const card = new Card(cardData, "#card-template", (name, link) => {
+  //   viewImagePopup.open({ name, link });
+  // });
+  const card = new Card({
+    cardData,
+    cardSelector: "#card-template",
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick,
+    handleDeleteClick,
   });
+
   return card.getView();
 }
 
-const section = new Section({
-  items: initialCards,
-  renderer: (cardData) => {
-    const card = renderCard(cardData);
-    section.addItem(card);
-  },
-});
-section.renderItems();
+function handleCardClick(name, link) {
+  viewImagePopup.open({ name, link });
+}
+/* ------------------------ delete card confirmation ------------------------ */
+
+const deleteCardConfirmation = new PopupWithConfirmation("#delete-card-popup");
+
+function handleDeleteClick(card) {
+  deleteCardConfirmation.open();
+  deleteCardConfirmation.setSubmitAction(() => {
+    deleteCardConfirmation.renderLoading(true, "Saving...");
+    const id = card.getId();
+    api
+      .deleteCard(id)
+      .then(() => {
+        card.deleteCard();
+        deleteCardConfirmation.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        deleteCardConfirmation.renderLoading(false);
+      });
+  });
+}
+deleteCardConfirmation.setEventListeners();
+/* ------------------------------- like button ------------------------------ */
+
+function handleLikeClick(card) {
+  if (card.isLiked()) {
+    api
+      .deleteLike(card.getId())
+      .then((cardData) => card.setIsLiked(cardData.isLiked))
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .addLike(card.getId())
+      .then((cardData) => card.setIsLiked(cardData.isLiked))
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
 /* -------------------------------------------------------------------------- */
 export const editFormValidator = new FormValidator(settings, editForm);
 export const addFormValidator = new FormValidator(settings, addForm);
+export const editProfilePicValidator = new FormValidator(
+  settings,
+  editProfilePicForm
+);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+editProfilePicValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
 /*                               PopupWithImage                               */
@@ -85,9 +141,19 @@ viewImagePopup.setEventListeners();
 
 //edit profile popup
 const handleProfileEditSubmit = (inputValues) => {
-  userInfo.setUserInfo(inputValues.name, inputValues.about);
-
-  editProfilePopup.close();
+  editProfilePopup.renderLoading(true, "Saving...");
+  api
+    .editProfile(inputValues)
+    .then(() => {
+      userInfo.setUserInfo(inputValues.name, inputValues.about);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
 };
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-popup",
@@ -103,12 +169,23 @@ profileEditButton.addEventListener("click", () => {
   editProfilePopup.open();
 });
 
-//add card popup
+/* ---------------------------- add card popup ---------------------------- */
 
 const handleAddCardFormSubmit = (inputValues) => {
-  const card = renderCard(inputValues);
-  section.addItem(card);
-  newCardPopup.close();
+  newCardPopup.renderLoading(true, "Saving...");
+  api
+    .addNewCard(inputValues)
+    .then((res) => {
+      const card = renderCard(res);
+      section.addItem(card);
+      newCardPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      newCardPopup.renderLoading(false);
+    });
 };
 
 const newCardPopup = new PopupWithForm(
@@ -127,5 +204,66 @@ addCardButton.addEventListener("click", () => {
 /* ------------------------------------------------------------------------ */
 const userInfo = new UserInfo({
   userName: ".profile__title",
-  userDescription: ".profile__description",
+  userAbout: ".profile__description",
+  userPicture: ".profile__pic",
+});
+/* -------------------------------------------------------------------------- */
+/*                                     API                                    */
+/* -------------------------------------------------------------------------- */
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "63bd0a97-87e8-4761-93e7-bc9458ee6ee5",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getUserInfo().then((res) => {
+  userInfo.setUserInfo(res.name, res.about);
+  userInfo.setAvatar(res.avatar);
+});
+let section;
+api
+  .getInitialCards()
+  .then((cards) => {
+    section = new Section({
+      items: cards,
+      renderer: (cardData) => {
+        const card = renderCard(cardData);
+        section.addItem(card);
+      },
+    });
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+/* ------------------------- update profile picture popup ------------------------- */
+
+const handleEditProfileFormSubmit = (avatar) => {
+  editProfilePicPopup.renderLoading(true, "Saving...");
+  api
+    .updateProfilePicture(avatar.link)
+    .then((response) => {
+      userInfo.setAvatar(avatar.link);
+      editProfilePicPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      editProfilePicPopup.renderLoading(false);
+    });
+};
+
+const editProfilePicPopup = new PopupWithForm(
+  "#edit-profile-pic-popup",
+  handleEditProfileFormSubmit
+);
+
+editProfilePicPopup.setEventListeners();
+
+editProfilePicButton.addEventListener("click", () => {
+  editProfilePicPopup.open();
 });
