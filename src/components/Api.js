@@ -46,7 +46,7 @@ export default class Api {
         name,
         link,
       }),
-    });
+    }).then(this._handleResponse);
   }
 
   deleteCard(id) {
