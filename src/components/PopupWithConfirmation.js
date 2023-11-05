@@ -29,11 +29,11 @@ export default class PopupWithConfirmation extends Popup {
     });
   }
 
-  // renderLoading(isLoading, loadingText = "Saving...") {
-  //   if (isLoading) {
-  //     this._popupSaveButton.textContent = loadingText;
-  //   } else {
-  //     this._popupSaveButton.textContent = this._popupSaveButtonText;
-  //   }
-  // }
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._popupSaveButton.textContent = loadingText;
+    } else {
+      this._popupSaveButton.textContent = this._popupSaveButtonText;
+    }
+  }
 }
